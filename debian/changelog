@@ -1,3 +1,9 @@
+ffmpeg (7:2.5.5-0ubuntu1) vivid; urgency=medium
+
+  * Import new upstream bugfix release 2.5.5.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Sun, 22 Mar 2015 20:50:00 +0100
+
 ffmpeg (7:2.5.4-1) unstable; urgency=medium
 
   * Import new upstream bugfix release 2.5.4.
