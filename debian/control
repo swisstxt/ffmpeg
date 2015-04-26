@@ -1,7 +1,8 @@
 Source: ffmpeg
 Section: video
 Priority: optional
-Maintainer: Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>
 Uploaders: Alexander Strasser <eclipse7@gmx.net>
 Homepage: https://ffmpeg.org/
 Standards-Version: 3.9.6
