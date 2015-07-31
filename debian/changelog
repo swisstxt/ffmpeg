@@ -1,3 +1,9 @@
+ffmpeg (7:2.5.8-0ubuntu0.15.04.1) vivid-security; urgency=medium
+
+  * Import new upstream bugfix release 2.5.8. (LP: #1480311)
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Fri, 31 Jul 2015 15:50:07 +0200
+
 ffmpeg (7:2.5.7-0ubuntu0.15.04.1) vivid-security; urgency=medium
 
   * Import new upstream bugfix release 2.5.7. (LP: #1458171)
