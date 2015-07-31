@@ -466,7 +466,12 @@ static void ffmpeg_cleanup(int ret)
     }
     for (i = 0; i < nb_output_streams; i++) {
         OutputStream *ost = output_streams[i];
-        AVBitStreamFilterContext *bsfc = ost->bitstream_filters;
+        AVBitStreamFilterContext *bsfc;
+
+        if (!ost)
+            continue;
+
+        bsfc = ost->bitstream_filters;
         while (bsfc) {
             AVBitStreamFilterContext *next = bsfc->next;
             av_bitstream_filter_close(bsfc);
@@ -650,6 +655,7 @@ static void write_frame(AVFormatContext *s, AVPacket *pkt, OutputStream *ost)
             if (!new_pkt.buf)
                 exit_program(1);
         } else if (a < 0) {
+            new_pkt = *pkt;
             av_log(NULL, AV_LOG_ERROR, "Failed to open bitstream filter %s for stream %d with codec %s",
                    bsfc->filter->name, pkt->stream_index,
                    avctx->codec ? avctx->codec->name : "copy");
@@ -1142,7 +1148,10 @@ static void do_video_out(AVFormatContext *s,
     if (!ost->last_frame)
         ost->last_frame = av_frame_alloc();
     av_frame_unref(ost->last_frame);
-    av_frame_ref(ost->last_frame, next_picture);
+    if (next_picture && ost->last_frame)
+        av_frame_ref(ost->last_frame, next_picture);
+    else
+        av_frame_free(&ost->last_frame);
 }
 
 static double psnr(double d)
