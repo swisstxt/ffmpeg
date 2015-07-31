@@ -3162,6 +3162,7 @@ static int mov_read_cmov(MOVContext *c, AVIOContext *pb, MOVAtom atom)
         goto free_and_return;
     if (ffio_init_context(&ctx, moov_data, moov_len, 0, NULL, NULL, NULL, NULL) != 0)
         goto free_and_return;
+    ctx.seekable = AVIO_SEEKABLE_NORMAL;
     atom.type = MKTAG('m','o','o','v');
     atom.size = moov_len;
     ret = mov_read_default(c, &ctx, atom);
@@ -3715,6 +3716,9 @@ static int mov_read_close(AVFormatContext *s)
     for (i = 0; i < s->nb_streams; i++) {
         AVStream *st = s->streams[i];
         MOVStreamContext *sc = st->priv_data;
+
+        if (!sc)
+            continue;
 
         av_freep(&sc->ctts_data);
         for (j = 0; j < sc->drefs_count; j++) {
