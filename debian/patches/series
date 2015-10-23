@@ -1,2 +1,2 @@
 Change-symbol-versioning.patch
-hls-only-seek-if-there-is-an-offset.patch
+avcodec-vp8-Do-not-use-num_coeff_partitions-in-thread.patch
