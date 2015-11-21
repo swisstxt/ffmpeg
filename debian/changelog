@@ -1,3 +1,15 @@
+ffmpeg (7:2.7.3-0ubuntu0.15.10.1) wily-security; urgency=medium
+
+  [ Andreas Cadhalpun ]
+  * Import new upstream bugfix release 2.7.3. (LP: #1518549)
+
+  [ Fabian Greffrath ]
+  * Add alternative Depends: libavcodec-ffmpeg-extra56 to libavcodec-dev and
+    ffmpeg-dbg to allow for building and debugging with this library installed.
+    (LP: #1509632)
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Sat, 21 Nov 2015 12:16:22 +0100
+
 ffmpeg (7:2.7.2-1) unstable; urgency=medium
 
   [ Reinhard Tartler ]
