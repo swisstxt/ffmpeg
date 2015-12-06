@@ -61,6 +61,8 @@ CONFIG := --prefix=/usr \
 	--toolchain=hardened \
 	--libdir=/usr/lib/$(DEB_HOST_MULTIARCH) \
 	--incdir=/usr/include/$(DEB_HOST_MULTIARCH) \
+	--cc=$(CC) \
+	--cxx=$(CXX) \
 	--enable-gpl \
 	--enable-shared \
 	--disable-stripping \
@@ -127,11 +129,8 @@ endif
 
 # Some libraries are build only on linux.
 ifeq ($(DEB_HOST_ARCH_OS),linux)
-	CONFIG += --enable-libiec61883
-	# Some libraries are not available/unusable (#790560) on sparc64.
-	ifeq (,$(filter $(DEB_HOST_ARCH),sparc64))
-		CONFIG += --enable-libdc1394
-	endif
+	CONFIG += --enable-libdc1394 \
+		--enable-libiec61883
 endif
 
 # Some libraries are not build on hurd.
@@ -139,19 +138,25 @@ ifneq ($(DEB_HOST_ARCH_OS),hurd)
 	CONFIG += --enable-libzmq
 endif
 
-# Some libraries are not available on mips64el.
-ifeq (,$(filter $(DEB_HOST_ARCH),mips64el))
-	CONFIG += --enable-frei0r
-endif
+# ffmpeg is involed in build-dependency cycles with opencv and x264, so disable them in stage one.
+# Also disable frei0r, which build-depends on opencv.
+ifneq ($(filter stage1,$(DEB_BUILD_PROFILES)),)
+	CONFIG += --disable-libx264 --disable-libopencv --disable-frei0r
+else
+	# Some libraries are not available on mips64el.
+	ifeq (,$(filter $(DEB_HOST_ARCH),mips64el))
+		CONFIG += --enable-frei0r
+	endif
 
-# Some libraries are not available/unusable (#792921) on sparc64/mips64el.
-ifeq (,$(filter $(DEB_HOST_ARCH),sparc64))
-	CONFIG += --enable-libx264
-endif
+	# Some libraries are not available/unusable (#792921) on sparc64/mips64el.
+	ifeq (,$(filter $(DEB_HOST_ARCH),sparc64))
+		CONFIG += --enable-libx264
+	endif
 
-# OpenCV is not available on some architectures.
-ifeq (,$(filter $(DEB_HOST_ARCH),sh4 sparc64 mips64el))
-	CONFIG += --enable-libopencv
+	# OpenCV is not available on some architectures.
+	ifeq (,$(filter $(DEB_HOST_ARCH),sh4 sparc64 mips64el))
+		CONFIG += --enable-libopencv
+	endif
 endif
 
 # Disable i686 optimizations on i386, because they are not always available on this architecture.
@@ -210,17 +215,14 @@ override_dh_auto_clean:
 	[ ! -d doc/examples/pc-uninstalled ] || rm -r doc/examples/pc-uninstalled
 	$(foreach flavor,$(FLAVORS),[ ! -d debian/$(flavor) ] || rm -r debian/$(flavor);)
 	# Restore backed up CSS files
-	[ ! -f debian/bootstrap.min.css.bak ] || mv debian/bootstrap.min.css.bak doc/bootstrap.min.css
 	[ ! -f debian/style.min.css.bak ] || mv debian/style.min.css.bak doc/style.min.css
 
 # Create doxygen documentation:
 override_dh_auto_build-indep:
 	dh_auto_build -i -- apidoc
 	# Backup the minified CSS files distributed by upstream.
-	mv doc/bootstrap.min.css debian/bootstrap.min.css.bak
 	mv doc/style.min.css debian/style.min.css.bak
 	# Create the minified CSS files.
-	lessc debian/missing-sources/bootstrap/less/bootstrap.less | cleancss | cat debian/missing-sources/bootstrap_copyright_notice.txt - > doc/bootstrap.min.css
 	lessc debian/missing-sources/ffmpeg-web/src/less/style.less | cleancss > doc/style.min.css
 
 override_dh_auto_build-arch:
