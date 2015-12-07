@@ -1,3 +1,11 @@
+ffmpeg (7:2.5.9-0ubuntu0.15.04.1) vivid-security; urgency=medium
+
+  * Import new upstream bugfix release 2.5.9. (LP: #1523692)
+    Fixes CVE-2015-6761, CVE-2015-8216, CVE-2015-8219, CVE-2015-8363,
+    CVE-2015-8364 and CVE-2015-8365.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Mon, 07 Dec 2015 23:22:22 +0100
+
 ffmpeg (7:2.5.8-0ubuntu0.15.04.1) vivid-security; urgency=medium
 
   * Import new upstream bugfix release 2.5.8. (LP: #1480311)
