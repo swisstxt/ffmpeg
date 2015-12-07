@@ -252,6 +252,10 @@ static int get_siz(Jpeg2000DecoderContext *s)
         avpriv_request_sample(s->avctx, "Support for image offsets");
         return AVERROR_PATCHWELCOME;
     }
+    if (s->width > 32768U || s->height > 32768U) {
+        avpriv_request_sample(s->avctx, "Large Dimensions");
+        return AVERROR_PATCHWELCOME;
+    }
 
     if (ncomponents <= 0) {
         av_log(s->avctx, AV_LOG_ERROR, "Invalid number of components: %d\n",
@@ -686,10 +690,10 @@ static int init_tile(Jpeg2000DecoderContext *s, int tileno)
         Jpeg2000QuantStyle  *qntsty = tile->qntsty + compno;
         int ret; // global bandno
 
-        comp->coord_o[0][0] = FFMAX(tilex       * s->tile_width  + s->tile_offset_x, s->image_offset_x);
-        comp->coord_o[0][1] = FFMIN((tilex + 1) * s->tile_width  + s->tile_offset_x, s->width);
-        comp->coord_o[1][0] = FFMAX(tiley       * s->tile_height + s->tile_offset_y, s->image_offset_y);
-        comp->coord_o[1][1] = FFMIN((tiley + 1) * s->tile_height + s->tile_offset_y, s->height);
+        comp->coord_o[0][0] = av_clip(tilex       * (int64_t)s->tile_width  + s->tile_offset_x, s->image_offset_x, s->width);
+        comp->coord_o[0][1] = av_clip((tilex + 1) * (int64_t)s->tile_width  + s->tile_offset_x, s->image_offset_x, s->width);
+        comp->coord_o[1][0] = av_clip(tiley       * (int64_t)s->tile_height + s->tile_offset_y, s->image_offset_y, s->height);
+        comp->coord_o[1][1] = av_clip((tiley + 1) * (int64_t)s->tile_height + s->tile_offset_y, s->image_offset_y, s->height);
 
         comp->coord[0][0] = ff_jpeg2000_ceildivpow2(comp->coord_o[0][0], s->reduction_factor);
         comp->coord[0][1] = ff_jpeg2000_ceildivpow2(comp->coord_o[0][1], s->reduction_factor);
@@ -1077,6 +1081,10 @@ static int decode_cblk(Jpeg2000DecoderContext *s, Jpeg2000CodingStyle *codsty,
     ff_mqc_initdec(&t1->mqc, cblk->data);
 
     while (passno--) {
+        if (bpno < 0) {
+            av_log(s->avctx, AV_LOG_ERROR, "bpno became negative\n");
+            return AVERROR_INVALIDDATA;
+        }
         switch(pass_t) {
         case 0:
             decode_sigpass(t1, width, height, bpno + 1, bandpos,
@@ -1356,6 +1364,7 @@ static void jpeg2000_dec_cleanup(Jpeg2000DecoderContext *s)
     memset(s->codsty, 0, sizeof(s->codsty));
     memset(s->qntsty, 0, sizeof(s->qntsty));
     s->numXtiles = s->numYtiles = 0;
+    s->ncomponents = 0;
 }
 
 static int jpeg2000_read_main_headers(Jpeg2000DecoderContext *s)
@@ -1410,6 +1419,10 @@ static int jpeg2000_read_main_headers(Jpeg2000DecoderContext *s)
 
         switch (marker) {
         case JPEG2000_SIZ:
+            if (s->ncomponents) {
+                av_log(s->avctx, AV_LOG_ERROR, "Duplicate SIZ\n");
+                return AVERROR_INVALIDDATA;
+            }
             ret = get_siz(s);
             if (!s->tile)
                 s->numXtiles = s->numYtiles = 0;
