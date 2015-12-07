@@ -1,5 +1,8 @@
 /*
- * Copyright (C) 2008 Michael Niedermayer
+ * VP9 compatible video decoder
+ *
+ * Copyright (C) 2013 Ronald S. Bultje <rsbultje gmail com>
+ * Copyright (C) 2013 Clément Bœsch <u pkh me>
  *
  * This file is part of FFmpeg.
  *
@@ -43,6 +46,7 @@ static int parse(AVCodecParserContext *ctx,
                  const uint8_t *data, int size)
 {
     VP9ParseContext *s = ctx->priv_data;
+    int full_size = size;
     int marker;
 
     if (size <= 0) {
@@ -77,12 +81,12 @@ static int parse(AVCodecParserContext *ctx,
                     idx += a; \
                     if (sz > size) { \
                         s->n_frames = 0; \
-                        *out_size = 0; \
+                        *out_size = size; \
                         *out_data = data; \
                         av_log(avctx, AV_LOG_ERROR, \
                                "Superframe packet size too big: %u > %d\n", \
                                sz, size); \
-                        return size; \
+                        return full_size; \
                     } \
                     if (first) { \
                         first = 0; \

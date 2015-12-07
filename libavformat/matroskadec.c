@@ -1716,7 +1716,7 @@ static int matroska_parse_tracks(AVFormatContext *s)
             ffio_init_context(&b, track->codec_priv.data,
                               track->codec_priv.size,
                               0, NULL, NULL, NULL, NULL);
-            ret = ff_get_wav_header(&b, st->codec, track->codec_priv.size);
+            ret = ff_get_wav_header(s, &b, st->codec, track->codec_priv.size);
             if (ret < 0)
                 return ret;
             codec_id         = st->codec->codec_id;
@@ -2971,6 +2971,7 @@ static int matroska_read_seek(AVFormatContext *s, int stream_index,
         tracks[i].audio.buf_timecode   = AV_NOPTS_VALUE;
         tracks[i].end_timecode         = 0;
         if (tracks[i].type == MATROSKA_TRACK_TYPE_SUBTITLE &&
+            tracks[i].stream &&
             tracks[i].stream->discard != AVDISCARD_ALL) {
             index_sub = av_index_search_timestamp(
                 tracks[i].stream, st->index_entries[index].timestamp,
