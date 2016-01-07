@@ -1,8 +1,18 @@
-ffmpeg (7:2.8.3-1~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:2.8.4-1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
 
- -- Balint Reczey <balint@balintreczey.hu>  Sun, 06 Dec 2015 22:16:41 +0100
+ -- Balint Reczey <balint@balintreczey.hu>  Thu, 07 Jan 2016 23:04:25 +0100
+
+ffmpeg (7:2.8.4-1) unstable; urgency=medium
+
+  * Import new upstream bugfix release 2.8.4.
+  * Change section of libavcodec-extra from libs to metapackages.
+  * Re-enable libsoxr as glibc bug #793641 is now fixed in testing.
+  * Add patch to make apidoc output independent of SRC_PATH.
+  * Also build standard flavor in a subdirectory. (Closes: #804284)
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Sun, 20 Dec 2015 23:12:56 +0100
 
 ffmpeg (7:2.8.3-1) unstable; urgency=medium
 
@@ -26,7 +36,6 @@ ffmpeg (7:2.8.2-1) unstable; urgency=medium
   * Re-enable libdc1394 on sparc64, as libudev is working again.
 
  -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Thu, 12 Nov 2015 23:58:49 +0100
->>>>>>> debian/7%2.8.3-1
 
 ffmpeg (7:2.8.1-1) unstable; urgency=medium
 
