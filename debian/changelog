@@ -1,3 +1,10 @@
+ffmpeg (7:2.7.5-0ubuntu0.15.10.1) wily-security; urgency=medium
+
+  * Import new upstream bugfix release 2.7.5.
+     - Fixes CVE-2016-1897 and CVE-2016-1898. (LP: #1533367)
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Fri, 15 Jan 2016 21:05:04 +0100
+
 ffmpeg (7:2.7.4-0ubuntu0.15.10.1) wily-security; urgency=medium
 
   * Import new upstream bugfix release 2.7.4. (LP: #1528682)
