@@ -1010,6 +1010,23 @@ static void update_options(char **dest, const char *name, void *src)
         av_freep(dest);
 }
 
+static int check_url(const char *url) {
+    const char *proto_name = avio_find_protocol_name(url);
+
+    if (!proto_name)
+        return AVERROR_INVALIDDATA;
+
+    if (!av_strstart(proto_name, "http", NULL) && !av_strstart(proto_name, "file", NULL))
+        return AVERROR_INVALIDDATA;
+
+    if (!strncmp(proto_name, url, strlen(proto_name)) && url[strlen(proto_name)] == ':')
+        return 0;
+    else if (strcmp(proto_name, "file") || !strncmp(url, "file,", 5))
+        return AVERROR_INVALIDDATA;
+
+    return 0;
+}
+
 static int open_input(HLSContext *c, struct playlist *pls, struct segment *seg)
 {
     AVDictionary *opts = NULL;
@@ -1036,6 +1053,10 @@ static int open_input(HLSContext *c, struct playlist *pls, struct segment *seg)
            seg->url, seg->url_offset, pls->index);
 
     if (seg->key_type == KEY_NONE) {
+        ret = check_url(seg->url);
+        if (ret < 0)
+            goto cleanup;
+
         ret = ffurl_open(&pls->input, seg->url, AVIO_FLAG_READ,
                           &pls->parent->interrupt_callback, &opts);
 
@@ -1043,6 +1064,10 @@ static int open_input(HLSContext *c, struct playlist *pls, struct segment *seg)
         char iv[33], key[33], url[MAX_URL_SIZE];
         if (strcmp(seg->key, pls->key_url)) {
             URLContext *uc;
+            ret = check_url(seg->key);
+            if (ret < 0)
+                goto cleanup;
+
             if (ffurl_open(&uc, seg->key, AVIO_FLAG_READ,
                            &pls->parent->interrupt_callback, &opts2) == 0) {
                 if (ffurl_read_complete(uc, pls->key, sizeof(pls->key))
