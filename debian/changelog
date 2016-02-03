@@ -1,3 +1,11 @@
+ffmpeg (7:2.7.6-0ubuntu0.15.10.1) wily-security; urgency=medium
+
+  * Import new pstream bugfix release 2.7.6.
+     - Fixes CVE-2016-2213. (LP: #1541622)
+  * Use ubuntu versions for debian-tag in gbp.conf.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Wed, 03 Feb 2016 23:38:37 +0100
+
 ffmpeg (7:2.7.5-0ubuntu0.15.10.1) wily-security; urgency=medium
 
   * Import new upstream bugfix release 2.7.5.
