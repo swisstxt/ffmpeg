@@ -1,8 +1,30 @@
-ffmpeg (7:2.8.4-1~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:2.8.6-1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
 
- -- Balint Reczey <balint@balintreczey.hu>  Thu, 07 Jan 2016 23:04:25 +0100
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 26 Feb 2016 18:33:31 +0100
+
+ffmpeg (7:2.8.6-1) unstable; urgency=medium
+
+  * Import new upstream bugfix release 2.8.6.
+  * Update Standards-Version to 3.9.7.
+     - Move documentatation from /u/s/d/ffmpeg-doc/ to /u/s/d/ffmpeg/.
+  * Use https for the Vcs-Git link.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Tue, 02 Feb 2016 23:46:23 +0100
+
+ffmpeg (7:2.8.5-1) unstable; urgency=medium
+
+  * Import new upstream bugfix release 2.8.5.
+     - Fixes CVE-2016-1897 and CVE-2016-1898.
+  * Update doc-make-apidoc-output-independent-of-SRC_PATH.patch.
+  * Add patch to make out-of-tree builds bit-identical to in-tree-builds.
+  * Enable the now available opencv and frei0r on mips64el.
+  * Fix altivec-extra compile time optimization.
+  * Update copyright year for the debian files.
+  * Change priority of libavcodec*-extra* to extra.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Fri, 15 Jan 2016 20:23:56 +0100
 
 ffmpeg (7:2.8.4-1) unstable; urgency=medium
 

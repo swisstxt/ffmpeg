@@ -146,18 +146,15 @@ endif
 ifneq ($(filter stage1,$(DEB_BUILD_PROFILES)),)
 	CONFIG += --disable-libx264 --disable-libopencv --disable-frei0r
 else
-	# Some libraries are not available on mips64el.
-	ifeq (,$(filter $(DEB_HOST_ARCH),mips64el))
-		CONFIG += --enable-frei0r
-	endif
+	CONFIG += --enable-frei0r
 
-	# Some libraries are not available/unusable (#792921) on sparc64/mips64el.
+	# Some libraries are unusable (#792921) on sparc64.
 	ifeq (,$(filter $(DEB_HOST_ARCH),sparc64))
 		CONFIG += --enable-libx264
 	endif
 
 	# OpenCV is not available on some architectures.
-	ifeq (,$(filter $(DEB_HOST_ARCH),sh4 sparc64 mips64el))
+	ifeq (,$(filter $(DEB_HOST_ARCH),sh4 sparc64))
 		CONFIG += --enable-libopencv
 	endif
 endif
@@ -222,10 +219,10 @@ override_dh_auto_build-arch:
 	for flavor in $(FLAVORS); do \
 		echo " *** $$flavor ***"; \
 		if echo "$$flavor" | grep -q "extra"; then \
-			subdir=`echo "$$flavor" | grep "-" | sed 's_\(.*\)-.*_debian/\1/_'`; \
+			subdir=`[ "$$flavor" = "extra" ] && echo "debian/standard/" || echo "debian/altivec/"`; \
 			for dir in `cd ./$$subdir; find libavcodec libavutil libswresample -type d`; do \
 				mkdir -p debian/"$$flavor"/"$$dir"; \
-				echo debian/standard/"$$subdir$$dir"/*.o | grep -q '*' || cp debian/standard/"$$subdir$$dir"/*.o debian/"$$flavor"/"$$dir"; \
+				echo "$$subdir$$dir"/*.o | grep -q '*' || cp "$$subdir$$dir"/*.o debian/"$$flavor"/"$$dir"; \
 			done; \
 			rm debian/"$$flavor"/libavcodec/allcodecs.o; \
 		fi; \
