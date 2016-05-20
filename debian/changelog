@@ -1,8 +1,10 @@
 ffmpeg (7:3.0.2-2~bpo8+1) jessie-backports; urgency=medium
 
+  * Build-depend on libx265-dev (>= 1.8)
+    Build needs x265 build >= 68 which has been packaged in x265 1.8-1 first
   * Rebuild for jessie-backports.
 
- -- Balint Reczey <balint@balintreczey.hu>  Wed, 18 May 2016 21:57:55 +0200
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 20 May 2016 21:47:15 +0200
 
 ffmpeg (7:3.0.2-2) unstable; urgency=medium
 
