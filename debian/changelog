@@ -1,10 +1,29 @@
-ffmpeg (7:3.0.2-2~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:3.0.2-4~bpo8+1) jessie-backports; urgency=medium
 
-  * Build-depend on libx265-dev (>= 1.8)
-    Build needs x265 build >= 68 which has been packaged in x265 1.8-1 first
   * Rebuild for jessie-backports.
 
- -- Balint Reczey <balint@balintreczey.hu>  Fri, 20 May 2016 21:47:15 +0200
+ -- Balint Reczey <balint@balintreczey.hu>  Wed, 06 Jul 2016 01:54:36 +0200
+
+ffmpeg (7:3.0.2-4) unstable; urgency=medium
+
+  * debian/control: Switch to libopenjp2-7-dev. (Closes: #826812)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 11 Jun 2016 11:19:42 +0200
+
+ffmpeg (7:3.0.2-3) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Balint Reczey ]
+  * Build-depend on libx265-dev (>= 1.8)
+
+  [ Sebastian Ramacher ]
+  * debian/rules:
+    - No longer disable i686 optimization on i386 based architectures.
+    - Disable mips32r6 for all mips architectures.
+  * debian/copyright: Remove an extra 'with'.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 01 Jun 2016 20:43:32 +0200
 
 ffmpeg (7:3.0.2-2) unstable; urgency=medium
 
