@@ -32,6 +32,7 @@
 #include "libavutil/imgutils.h"
 #include "libavutil/pixdesc.h"
 #include "libavutil/timer.h"
+
 #include "avcodec.h"
 #include "internal.h"
 #include "put_bits.h"
@@ -780,14 +781,12 @@ FF_ENABLE_DEPRECATION_WARNINGS
         s->colorspace = 1;
         s->transparency = 1;
         s->chroma_planes = 1;
-        if (!avctx->bits_per_raw_sample)
-            s->bits_per_raw_sample = 8;
+        s->bits_per_raw_sample = 8;
         break;
     case AV_PIX_FMT_0RGB32:
         s->colorspace = 1;
         s->chroma_planes = 1;
-        if (!avctx->bits_per_raw_sample)
-            s->bits_per_raw_sample = 8;
+        s->bits_per_raw_sample = 8;
         break;
     case AV_PIX_FMT_GBRP9:
         if (!avctx->bits_per_raw_sample)
@@ -1289,7 +1288,11 @@ static int encode_frame(AVCodecContext *avctx, AVPacket *pkt,
     av_frame_unref(p);
     if ((ret = av_frame_ref(p, pict)) < 0)
         return ret;
+#if FF_API_CODED_FRAME
+FF_DISABLE_DEPRECATION_WARNINGS
     avctx->coded_frame->pict_type = AV_PICTURE_TYPE_I;
+FF_ENABLE_DEPRECATION_WARNINGS
+#endif
 
     if (avctx->gop_size == 0 || f->picture_number % avctx->gop_size == 0) {
         put_rac(c, &keystate, 1);

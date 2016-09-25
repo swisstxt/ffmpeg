@@ -1,8 +1,80 @@
-ffmpeg (7:3.0.2-4~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:3.1.3-1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
 
- -- Balint Reczey <balint@balintreczey.hu>  Wed, 06 Jul 2016 01:54:36 +0200
+ -- Balint Reczey <balint@balintreczey.hu>  Sun, 25 Sep 2016 23:29:56 +0200
+
+ffmpeg (7:3.1.3-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * debian/{rules,*.symbols}: Remove symbol files and generate tighter
+    dependencies using a dh_makeshlibs override. (Closes: #835645)
+  * debian/copyright: Fix dep5-copyright-license-name-not-unique.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 28 Aug 2016 12:12:44 +0200
+
+ffmpeg (7:3.1.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches:
+    - fix-vaapi-default-values.patch: Removed, applied upstream.
+    - Revert-configure-Enable-GCC-vectorization-on-4.9-on-.patch: Removed,
+      included upstream.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 10 Aug 2016 20:42:29 +0200
+
+ffmpeg (7:3.1.1-4) unstable; urgency=high
+
+  * debian/control:
+    - Remove obsolete Conflicts.
+    - Remove obsolete Breaks against dmo packages.
+  * debian/patches/fix-vaapi-default-values.patch: Use local independent
+    default values. Thanks to Carl Eugen Hoyos. (Closes: #831529)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 03 Aug 2016 15:16:59 +0200
+
+ffmpeg (7:3.1.1-3) unstable; urgency=medium
+
+  [ James Clarke ]
+  * debian/rules: Re-enable x264 on sparc64 as the linker has been fixed.
+    (Closes: #831582)
+
+  [ Sebastian Ramacher ]
+  * debian/patches/Revert-configure-Enable-GCC-vectorization-on-4.9-on-.patch:
+    Apply upstream patch to disable GCC vectorization.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Thu, 21 Jul 2016 20:26:12 +0200
+
+ffmpeg (7:3.1.1-2) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Aurelien Jarno ]
+  * debian/rules: Fix FTBFS on mips64el by adding --disable-mips64r6. (Closes:
+    #830868)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 12 Jul 2016 16:38:52 +0200
+
+ffmpeg (7:3.1.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * debian/rules:
+    - Really build with opencv everywhere. (Closes: #827868)
+    - Remove obsolete comments.
+    - Build with --enable-libebur128.
+  * debian/patches
+    - lavf-mpegts-Return-small-probe-score-for-very-short-.patch: Removed,
+      included upstream.
+    - disable-opj-static.patch: Do not define OPJ_STATIC when building against
+      openjpeg 2.1.x.
+  * debian/control: Add libebur128-dev to B-D.
+  * debian/copyright:
+    - Add new copyright holders.
+    - Update copyright years.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 12 Jul 2016 09:37:46 +0200
 
 ffmpeg (7:3.0.2-4) unstable; urgency=medium
 

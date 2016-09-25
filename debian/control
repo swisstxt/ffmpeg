@@ -46,6 +46,8 @@ Build-Depends:
  libcrystalhd-dev [amd64 i386],
 # --enable-libdc1394
  libdc1394-22-dev [linux-any],
+# --enable-libebur128
+ libebur128-dev,
 # --enable-libfontconfig
  libfontconfig1-dev,
 # --enable-libfreetype
@@ -128,7 +130,7 @@ Build-Depends:
 # --enable-libwebp
  libwebp-dev,
 # --enable-libx264
- libx264-dev [!sparc64] <!stage1>,
+ libx264-dev <!stage1>,
 # --enable-libx265
  libx265-dev (>= 1.8),
 # --enable-x11grab
@@ -203,7 +205,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library with de/encoders for audio/video codecs - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -232,7 +233,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library with additional de/encoders for audio/video codecs
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -281,8 +281,6 @@ Package: libavcodec-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libavcodec-libav-dev
 Depends:
  libavcodec57 (= ${binary:Version}) | libavcodec-extra57 (= ${binary:Version}),
  libavutil-dev (= ${binary:Version}),
@@ -313,7 +311,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library for handling input and output devices - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -330,8 +327,6 @@ Package: libavdevice-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libavdevice-libav-dev
 Depends:
  libavcodec-dev (= ${binary:Version}),
  libavdevice57 (= ${binary:Version}),
@@ -364,7 +359,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library containing media filters - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -380,8 +374,6 @@ Package: libavfilter-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libavfilter-libav-dev
 Depends:
  libavcodec-dev (= ${binary:Version}),
  libavfilter6 (= ${binary:Version}),
@@ -412,7 +404,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library with (de)muxers for multimedia containers - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -430,8 +421,6 @@ Package: libavformat-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libavformat-libav-dev
 Depends:
  libavcodec-dev (= ${binary:Version}),
  libavformat57 (= ${binary:Version}),
@@ -460,7 +449,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg compatibility library for resampling - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -476,8 +464,6 @@ Package: libavresample-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libavresample-libav-dev
 Depends:
  libavutil-dev (= ${binary:Version}),
  libavresample3 (= ${binary:Version}),
@@ -521,8 +507,6 @@ Package: libavutil-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libavutil-libav-dev
 Depends:
  libavutil55 (= ${binary:Version}),
  ${misc:Depends}
@@ -550,7 +534,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library for post processing - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -565,8 +548,6 @@ Package: libpostproc-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libpostproc-libav-dev
 Depends:
  libavutil-dev (= ${binary:Version}),
  libpostproc54 (= ${binary:Version}),
@@ -590,7 +571,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library for audio resampling, rematrixing etc. - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -662,7 +642,6 @@ Pre-Depends:
 Depends:
  ${shlibs:Depends},
  ${misc:Depends}
-Breaks: libavutil-ffmpeg54 (>= 8:0)
 Description: FFmpeg library for image scaling and various conversions - runtime files
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
  mux, demux, stream, filter and play pretty much anything that humans and
@@ -688,8 +667,6 @@ Package: libswscale-dev
 Architecture: any
 Section: libdevel
 Multi-Arch: same
-Conflicts:
- libswscale-libav-dev
 Depends:
  libavutil-dev (= ${binary:Version}),
  libswscale4 (= ${binary:Version}),
