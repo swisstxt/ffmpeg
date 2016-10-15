@@ -1,3 +1,10 @@
+ffmpeg (7:2.8.8-0ubuntu0.16.04.1) xenial-security; urgency=medium
+
+  * Import new upstream bugfix release 2.8.8. (LP: #1581156)
+     - Fixes CVE-2016-6164 and CVE-2016-6881.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Sat, 15 Oct 2016 16:58:13 +0200
+
 ffmpeg (7:2.8.6-1ubuntu2) xenial; urgency=medium
 
   * No-change rebuild for zeromq3 transition.
