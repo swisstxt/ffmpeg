@@ -58,6 +58,7 @@ void av_init_packet(AVPacket *pkt)
 #if FF_API_DESTRUCT_PACKET
 FF_DISABLE_DEPRECATION_WARNINGS
     pkt->destruct             = NULL;
+    pkt->priv                 = NULL;
 FF_ENABLE_DEPRECATION_WARNINGS
 #endif
     pkt->buf                  = NULL;
@@ -194,6 +195,7 @@ static int copy_packet_data(AVPacket *pkt, const AVPacket *src, int dup)
 {
     pkt->data      = NULL;
     pkt->side_data = NULL;
+    pkt->side_data_elems = 0;
     if (pkt->buf) {
         AVBufferRef *ref = av_buffer_ref(src->buf);
         if (!ref)
@@ -208,9 +210,11 @@ FF_DISABLE_DEPRECATION_WARNINGS
     pkt->destruct = dummy_destruct_packet;
 FF_ENABLE_DEPRECATION_WARNINGS
 #endif
-    if (pkt->side_data_elems && dup)
+    if (src->side_data_elems && dup) {
         pkt->side_data = src->side_data;
-    if (pkt->side_data_elems && !dup) {
+        pkt->side_data_elems = src->side_data_elems;
+    }
+    if (src->side_data_elems && !dup) {
         return av_copy_packet_side_data(pkt, src);
     }
     return 0;
@@ -410,10 +414,12 @@ int av_packet_split_side_data(AVPacket *pkt){
         p = pkt->data + pkt->size - 8 - 5;
         for (i=1; ; i++){
             size = AV_RB32(p);
-            if (size>INT_MAX || p - pkt->data < size)
+            if (size>INT_MAX - 5 || p - pkt->data < size)
                 return 0;
             if (p[4]&128)
                 break;
+            if (p - pkt->data < size + 5)
+                return 0;
             p-= size+5;
         }
 
@@ -424,7 +430,7 @@ int av_packet_split_side_data(AVPacket *pkt){
         p= pkt->data + pkt->size - 8 - 5;
         for (i=0; ; i++){
             size= AV_RB32(p);
-            av_assert0(size<=INT_MAX && p - pkt->data >= size);
+            av_assert0(size<=INT_MAX - 5 && p - pkt->data >= size);
             pkt->side_data[i].data = av_mallocz(size + AV_INPUT_BUFFER_PADDING_SIZE);
             pkt->side_data[i].size = size;
             pkt->side_data[i].type = p[4]&127;
