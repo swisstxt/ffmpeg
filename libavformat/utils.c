@@ -1146,12 +1146,13 @@ static void compute_pkt_fields(AVFormatContext *s, AVStream *st,
         }
     }
 
-    if (pkt->pts != AV_NOPTS_VALUE && delay <= MAX_REORDER_DELAY && has_decode_delay_been_guessed(st)) {
+    if (pkt->pts != AV_NOPTS_VALUE && delay <= MAX_REORDER_DELAY) {
         st->pts_buffer[0] = pkt->pts;
         for (i = 0; i<delay && st->pts_buffer[i] > st->pts_buffer[i + 1]; i++)
             FFSWAP(int64_t, st->pts_buffer[i], st->pts_buffer[i + 1]);
 
-        pkt->dts = select_from_pts_buffer(st, st->pts_buffer, pkt->dts);
+        if(has_decode_delay_been_guessed(st))
+            pkt->dts = select_from_pts_buffer(st, st->pts_buffer, pkt->dts);
     }
     // We skipped it above so we try here.
     if (!onein_oneout)
@@ -2244,6 +2245,7 @@ int avformat_seek_file(AVFormatContext *s, int stream_index, int64_t min_ts,
             max_ts = av_rescale_rnd(max_ts, time_base.den,
                                     time_base.num * (int64_t)AV_TIME_BASE,
                                     AV_ROUND_DOWN | AV_ROUND_PASS_MINMAX);
+            stream_index = 0;
         }
 
         ret = s->iformat->read_seek2(s, stream_index, min_ts,
@@ -2371,7 +2373,7 @@ static void update_stream_timings(AVFormatContext *ic)
     if (duration != INT64_MIN && duration > 0 && ic->duration == AV_NOPTS_VALUE) {
         ic->duration = duration;
     }
-    if (ic->pb && (filesize = avio_size(ic->pb)) > 0 && ic->duration != AV_NOPTS_VALUE) {
+    if (ic->pb && (filesize = avio_size(ic->pb)) > 0 && ic->duration > 0) {
         /* compute the bitrate */
         double bitrate = (double) filesize * 8.0 * AV_TIME_BASE /
                          (double) ic->duration;
@@ -2784,6 +2786,9 @@ enum AVCodecID ff_codec_get_id(const AVCodecTag *tags, unsigned int tag)
 
 enum AVCodecID ff_get_pcm_codec_id(int bps, int flt, int be, int sflags)
 {
+    if (bps <= 0 || bps > 64)
+        return AV_CODEC_ID_NONE;
+
     if (flt) {
         switch (bps) {
         case 32:
