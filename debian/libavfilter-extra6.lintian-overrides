@@ -3,4 +3,7 @@
 # performance penalty, especially on i386.
 # Therefore -fPIC is not used by the upstream build system on i386.
 # 1: https://www.debian.org/doc/debian-policy/footnotes.html#f83
-libavcodec57 [i386]: shlib-with-non-pic-code usr/lib/i386*/libavcodec.so.*
+libavfilter-extra6 [i386]: shlib-with-non-pic-code usr/lib/i386*/libavfilter.so.*
+
+# This is intentional, because this package provides an alternative variant with the same soname.
+libavfilter-extra6: package-name-doesnt-match-sonames libavfilter*
