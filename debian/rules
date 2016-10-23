@@ -105,7 +105,7 @@ CONFIG_extra = --enable-version3 \
 	--disable-programs \
 	--enable-libopencore_amrnb \
 	--enable-libopencore_amrwb \
-	--enable-libtesseract \
+	--disable-libtesseract \
 	--enable-libvo_amrwbenc \
 	--enable-netcdf
 
