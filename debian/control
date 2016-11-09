@@ -19,13 +19,13 @@ Build-Depends-Indep:
  node-less
 Build-Depends:
 # needed for dh
- debhelper (>= 9.20141010),
+ debhelper (>= 10),
 # for build-profile support
  dpkg-dev (>= 1.17.14),
 # --enable-libflite
  flite1-dev,
 # --enable-frei0r
- frei0r-plugins-dev <!stage1>,
+ frei0r-plugins-dev [!powerpcspe] <!stage1>,
 # --enable-ladspa
  ladspa-sdk,
 # --enable-libass
@@ -41,7 +41,7 @@ Build-Depends:
 # --enable-libcdio
  libcdio-paranoia-dev,
 # --enable-libchromaprint
- libchromaprint-dev (>= 1.3.2-2~) <!stage1>,
+ libchromaprint-dev (>= 1.3.2-2~) [!m68k !powerpcspe] <!stage1>,
 # autodetected 'crystalhd'
  libcrystalhd-dev [amd64 i386],
 # --enable-libdc1394
@@ -77,15 +77,15 @@ Build-Depends:
 # --enable-libmp3lame
  libmp3lame-dev,
 # --enable-netcdf
- libnetcdf-dev,
+ libnetcdf-dev [!powerpcspe],
 # --enable-openal
- libopenal-dev,
+ libopenal-dev [!powerpcspe],
 # --enable-libopencore_amrnb
  libopencore-amrnb-dev,
 # --enable-libopencore_amrwb
  libopencore-amrwb-dev,
 # --enable-libopencv
- libopencv-imgproc-dev <!stage1>,
+ libopencv-imgproc-dev [!powerpcspe] <!stage1>,
 # --enable-libopenjpeg
  libopenjp2-7-dev,
 # --enable-libopus
@@ -98,8 +98,8 @@ Build-Depends:
  libschroedinger-dev,
 # autodetected: protocol 'sctp'
  libsctp-dev [linux-any],
-# autodetected: SDL support
- libsdl-dev,
+# --enable-sdl2
+ libsdl2-dev,
 # --enable-libshine
  libshine-dev (>= 3.0.0),
 # --enable-libsnappy
@@ -134,7 +134,7 @@ Build-Depends:
 # --enable-libwebp
  libwebp-dev,
 # --enable-libx264
- libx264-dev <!stage1>,
+ libx264-dev [!powerpcspe] <!stage1>,
 # --enable-libx265
  libx265-dev (>= 1.8),
 # --enable-x11grab
@@ -155,7 +155,7 @@ Build-Depends:
 # HTML documentation
  texinfo,
 # assembler optimizations
- yasm
+ nasm
 
 Package: ffmpeg
 Architecture: any
