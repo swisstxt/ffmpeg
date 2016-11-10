@@ -6,8 +6,15 @@ ffmpeg (7:3.2-2~bpo8+1) jessie-backports; urgency=medium
   * Build-depend on libchromaprint-dev from jessie-backports
   * Disable OCR with Tesseract because it is missing the pkg-config file on
     jessie
+  * Disable AVX optimization.
+    It causes an error on jessie:
+    nasm -f elf64  -DPIC -g -F dwarf -I./ -Isrc// -Pconfig.asm \
+    -I /<<PKGBUILDDIR>>/libavcodec/x86/ -o libavcodec/x86/imdct36.o \
+    src/libavcodec/x86/imdct36.asm
+    src/libavcodec/x86/imdct36.asm:393: error: operation size not specified
+    ...
 
- -- Balint Reczey <balint@balintreczey.hu>  Sun, 23 Oct 2016 12:34:56 +0200
+ -- Balint Reczey <balint@balintreczey.hu>  Thu, 10 Nov 2016 09:38:18 +0100
 
 ffmpeg (7:3.2-2) unstable; urgency=medium
 
