@@ -1,3 +1,11 @@
+ffmpeg (7:3.2-2~bpo8+2) jessie-backports; urgency=medium
+
+  * Build-depend on yasm to work around nasm issues in jessie
+  * Revert Disabling AVX optimization
+  * Disable PIE on i386 by patching configure to fix FTBFS
+
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 11 Nov 2016 10:06:45 +0100
+
 ffmpeg (7:3.2-2~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
