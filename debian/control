@@ -147,6 +147,8 @@ Build-Depends:
  libzmq3-dev,
 # --enable-libzvbi
  libzvbi-dev,
+# For applying patches conditionally
+ patch,
 # The opencl API is considered experimental.
 # # --enable-opencl
 # ocl-icd-opencl-dev [!hurd-any] | opencl-dev [!hurd-any],
