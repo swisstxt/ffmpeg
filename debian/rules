@@ -51,7 +51,6 @@ CONFIG := --prefix=/usr \
 	--disable-decoder=libschroedinger \
 	--enable-avresample \
 	--enable-avisynth \
-	--disable-avx \
 	--enable-gnutls \
 	--enable-ladspa \
 	--enable-libass \
