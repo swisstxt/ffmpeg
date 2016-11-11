@@ -155,7 +155,7 @@ Build-Depends:
 # HTML documentation
  texinfo,
 # assembler optimizations
- nasm
+ yasm
 
 Package: ffmpeg
 Architecture: any
