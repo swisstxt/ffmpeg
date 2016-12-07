@@ -1,3 +1,25 @@
+ffmpeg (7:3.0.2-1ubuntu3) yakkety; urgency=medium
+
+  * debian/patches/0001-tests-checkasm-pixblockdsp-Test-8-byte-aligned-posit.patch:
+    Cherry-pick patch from upstream to fix tests on armhf (on arm64, as our
+    builders are) (LP: #1612058).
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Thu, 11 Aug 2016 11:16:17 +0100
+
+ffmpeg (7:3.0.2-1ubuntu2) yakkety; urgency=medium
+
+  * No-change rebuild against libwebp6
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Mon, 08 Aug 2016 13:12:37 +0100
+
+ffmpeg (7:3.0.2-1ubuntu1) yakkety; urgency=medium
+
+  * Resynchronise with Debian.  Remaining changes:
+    - Compile with -O2 rather than -O3 on s390x, to work around
+      https://bugs.launchpad.net/bugs/1526324.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 10 May 2016 13:50:07 +0100
+
 ffmpeg (7:3.0.2-1) unstable; urgency=medium
 
   * Team upload.
@@ -6,6 +28,21 @@ ffmpeg (7:3.0.2-1) unstable; urgency=medium
     Upstream patch to fix regression in aac in mpegts. (Closes: #823098)
 
  -- Sebastian Ramacher <sramacher@debian.org>  Sun, 08 May 2016 19:53:57 +0200
+
+ffmpeg (7:3.0.1-3ubuntu2) yakkety; urgency=medium
+
+  * lavf/mpegts: Return small probe score for very short transport streams,
+    fixing autopkgtests (patch from Carl Eugen Hoyos; see Debian #823098).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Wed, 04 May 2016 18:00:41 +0100
+
+ffmpeg (7:3.0.1-3ubuntu1) yakkety; urgency=medium
+
+  * Resynchronise with Debian.  Remaining changes:
+    - Compile with -O2 rather than -O3 on s390x, to work around
+      https://bugs.launchpad.net/bugs/1526324.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 29 Apr 2016 13:13:17 +0100
 
 ffmpeg (7:3.0.1-3) unstable; urgency=medium
 
@@ -56,6 +93,21 @@ ffmpeg (7:3.0-1) experimental; urgency=medium
 
  -- Sebastian Ramacher <sramacher@debian.org>  Tue, 08 Mar 2016 01:58:44 +0100
 
+ffmpeg (7:2.8.6-1ubuntu2) xenial; urgency=medium
+
+  * No-change rebuild for zeromq3 transition.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 14 Mar 2016 19:20:44 +0000
+
+ffmpeg (7:2.8.6-1ubuntu1) xenial; urgency=low
+
+  * Merge from Debian unstable.  Remaining changes:
+    - Compile with -O2 rather than -O3 on s390x, to work around
+      https://bugs.launchpad.net/bugs/1526324.
+  * Should fix LP: #1533367
+
+ -- Iain Lane <iain@orangesquash.org.uk>  Thu, 25 Feb 2016 17:48:20 +0000
+
 ffmpeg (7:2.8.6-1) unstable; urgency=medium
 
   * Import new upstream bugfix release 2.8.6.
@@ -77,6 +129,31 @@ ffmpeg (7:2.8.5-1) unstable; urgency=medium
   * Change priority of libavcodec*-extra* to extra.
 
  -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Fri, 15 Jan 2016 20:23:56 +0100
+
+ffmpeg (7:2.8.4-1ubuntu4) xenial; urgency=medium
+
+  * No-change rebuild for gnutls transition.
+
+ -- Matthias Klose <doko@ubuntu.com>  Wed, 17 Feb 2016 22:41:03 +0000
+
+ffmpeg (7:2.8.4-1ubuntu3) xenial; urgency=medium
+
+  * No-change rebuild for x265 transition.
+
+ -- Matthias Klose <doko@ubuntu.com>  Fri, 12 Feb 2016 09:46:11 +0000
+
+ffmpeg (7:2.8.4-1ubuntu2) xenial; urgency=medium
+
+  * Rebuild against libvpx3.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 07 Jan 2016 00:55:36 +0000
+
+ffmpeg (7:2.8.4-1ubuntu1) xenial; urgency=medium
+
+  * Compile with -O2 rather than -O3 on s390x, to work around
+    https://bugs.launchpad.net/bugs/1526324.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 24 Dec 2015 03:15:28 +0000
 
 ffmpeg (7:2.8.4-1) unstable; urgency=medium
 

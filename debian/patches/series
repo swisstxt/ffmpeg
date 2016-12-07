@@ -1,1 +1,3 @@
 lavf-mpegts-Return-small-probe-score-for-very-short-.patch
+s390x-O2.patch
+0001-tests-checkasm-pixblockdsp-Test-8-byte-aligned-posit.patch
