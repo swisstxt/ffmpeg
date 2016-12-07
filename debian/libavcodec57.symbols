@@ -178,6 +178,7 @@ libavcodec.so.57 libavcodec57 #MINVER# | libavcodec-extra57 #MINVER#
  avpriv_ac3_parse_header@LIBAVCODEC_57 7:3.0
  avpriv_align_put_bits@LIBAVCODEC_57 7:3.0
  avpriv_bprint_to_extradata@LIBAVCODEC_57 7:3.0
+ avpriv_codec_get_cap_skip_frame_fill_param@LIBAVCODEC_57 7:3.0.5
  avpriv_copy_bits@LIBAVCODEC_57 7:3.0
  avpriv_copy_pce_data@LIBAVCODEC_57 7:3.0
  avpriv_dca_convert_bitstream@LIBAVCODEC_57 7:3.0
