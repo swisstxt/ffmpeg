@@ -1,3 +1,13 @@
+ffmpeg (7:3.0.5-0ubuntu0.16.10.1) yakkety-security; urgency=medium
+
+  * New upstream bugfix release 3.0.5. (LP: #1648265)
+    Fixes CVE-2016-5199, CVE-2016-6164 and CVE-2016-6881.
+  * Drop patch included upstream:
+    lavf-mpegts-Return-small-probe-score-for-very-short-.patch
+  * Add avpriv_codec_get_cap_skip_frame_fill_param to symbols file.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Thu, 08 Dec 2016 01:39:03 +0100
+
 ffmpeg (7:3.0.2-1ubuntu3) yakkety; urgency=medium
 
   * debian/patches/0001-tests-checkasm-pixblockdsp-Test-8-byte-aligned-posit.patch:
