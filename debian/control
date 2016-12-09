@@ -25,7 +25,7 @@ Build-Depends:
 # --enable-libflite
  flite1-dev,
 # --enable-frei0r
- frei0r-plugins-dev [!powerpcspe] <!stage1>,
+ frei0r-plugins-dev <!stage1>,
 # --enable-ladspa
  ladspa-sdk,
 # --enable-libass
@@ -41,7 +41,7 @@ Build-Depends:
 # --enable-libcdio
  libcdio-paranoia-dev,
 # --enable-libchromaprint
- libchromaprint-dev (>= 1.3.2-2~) [!m68k !powerpcspe] <!stage1>,
+ libchromaprint-dev (>= 1.3.2-2~) [!sh4] <!stage1>,
 # autodetected 'crystalhd'
  libcrystalhd-dev [amd64 i386],
 # --enable-libdc1394
@@ -79,13 +79,15 @@ Build-Depends:
 # --enable-netcdf
  libnetcdf-dev [!powerpcspe],
 # --enable-openal
- libopenal-dev [!powerpcspe],
+ libopenal-dev,
+# --enable-omx
+ libomxil-bellagio-dev,
 # --enable-libopencore_amrnb
  libopencore-amrnb-dev,
 # --enable-libopencore_amrwb
  libopencore-amrwb-dev,
 # --enable-libopencv
- libopencv-imgproc-dev [!powerpcspe] <!stage1>,
+ libopencv-imgproc-dev <!stage1>,
 # --enable-libopenjpeg
  libopenjp2-7-dev,
 # --enable-libopus
@@ -94,8 +96,6 @@ Build-Depends:
  libpulse-dev,
 # --enable-librubberband
  librubberband-dev,
-# --enable-libschroedinger
- libschroedinger-dev,
 # autodetected: protocol 'sctp'
  libsctp-dev [linux-any],
 # --enable-sdl2
@@ -137,8 +137,14 @@ Build-Depends:
  libx264-dev [!powerpcspe] <!stage1>,
 # --enable-libx265
  libx265-dev (>= 1.8),
-# --enable-x11grab
- libxext-dev,
+# autodetected libxcb-shape
+ libxcb-shape0-dev,
+# autodetected libxcb-shm
+ libxcb-shm0-dev,
+# autodetected libxcb-xfixes
+ libxcb-xfixes0-dev,
+# autodetected xlib
+ libxv-dev,
 # --enable-libxvid
  libxvidcore-dev,
 # autodetected: decoder 'mpeg_xvmc'; outdev 'xv'
@@ -157,7 +163,9 @@ Build-Depends:
 # HTML documentation
  texinfo,
 # assembler optimizations
- yasm
+ yasm,
+# autodetected zlib
+ zlib1g-dev
 
 Package: ffmpeg
 Architecture: any

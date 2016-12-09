@@ -1,28 +1,51 @@
-ffmpeg (7:3.2-2~bpo8+2) jessie-backports; urgency=medium
-
-  * Build-depend on yasm to work around nasm issues in jessie
-  * Revert Disabling AVX optimization
-  * Disable PIE on i386 by patching configure to fix FTBFS
-
- -- Balint Reczey <balint@balintreczey.hu>  Fri, 11 Nov 2016 10:06:45 +0100
-
-ffmpeg (7:3.2-2~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:3.2.2-1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
+  * Build-depend on yasm to work around nasm issues in jessie
+  * Disable PIE on i386 by patching configure to fix FTBFS
   * Disable building with libebur128 because jessie's version breaks the
     build
   * Build-depend on libchromaprint-dev from jessie-backports
   * Disable OCR with Tesseract because it is missing the pkg-config file on
     jessie
-  * Disable AVX optimization.
-    It causes an error on jessie:
-    nasm -f elf64  -DPIC -g -F dwarf -I./ -Isrc// -Pconfig.asm \
-    -I /<<PKGBUILDDIR>>/libavcodec/x86/ -o libavcodec/x86/imdct36.o \
-    src/libavcodec/x86/imdct36.asm
-    src/libavcodec/x86/imdct36.asm:393: error: operation size not specified
-    ...
 
- -- Balint Reczey <balint@balintreczey.hu>  Thu, 10 Nov 2016 09:38:18 +0100
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 09 Dec 2016 20:51:26 +0100
+
+ffmpeg (7:3.2.2-1) unstable; urgency=medium
+
+  * Import new upstream bugfix release 3.2.2.
+  * Fix log messages in autopkgtest.
+  * Enable frei0r on powerpcspe.
+  * Drop --disable-tesseract.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Tue, 06 Dec 2016 23:58:20 +0100
+
+ffmpeg (7:3.2.1-1) unstable; urgency=medium
+
+  [ Balint Reczey ]
+  * Call dh_auto_install with -a/-i for -arch and for -indep targets
+    respectively
+
+  [ Andreas Cadhalpun ]
+  * Import new upstream bugfix release 3.2.1.
+  * Don't enable x11grab, which has been replaced with xcb.
+  * Add build-dependency on autodetected libxcb-shm0-dev. (Closes: #843144)
+  * Add explicit build-dependencies for autodetected features.
+  * Remove patches, fixed upstream.
+     - Revert-avformat-hls-Fix-missing-streams-in-some-case.patch
+     - apng-use-side-data-to-pass-extradata-to-muxer.patch
+     - doc-fix-spelling-errors.patch
+     - pixblockdsp-disable-altivec-optimizations-on-ppc64be.patch
+  * Disable libschroedinger entirely. (see #845037)
+  * Enable omx.
+  * Update build-dependencies for some ports.
+     - m68k: enable chromaprint
+     - powerpcspe: enable chromaprint, openal, opencv
+     - sh4: disable chromaprint
+  * Add streamcopy testing to the autopkgtest.
+  * Update encdec_list.txt.
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Sat, 26 Nov 2016 23:44:53 +0100
 
 ffmpeg (7:3.2-2) unstable; urgency=medium
 

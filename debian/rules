@@ -31,6 +31,7 @@ FLAVORS = standard extra static
 #   --enable-libnut
 #   --enable-libopenh264
 #   --enable-libopenmpt
+#   --enable-libschroedinger        (see #845037: removal due to security issues)
 #   --enable-libutvideo
 #   --enable-libvidstab             (see #709193 for the RFP bug)
 #   --enable-libxavs
@@ -46,9 +47,7 @@ CONFIG := --prefix=/usr \
 	--libdir=/usr/lib/$(DEB_HOST_MULTIARCH) \
 	--incdir=/usr/include/$(DEB_HOST_MULTIARCH) \
 	--enable-gpl \
-	--disable-libtesseract \
 	--disable-stripping \
-	--disable-decoder=libschroedinger \
 	--enable-avresample \
 	--enable-avisynth \
 	--enable-gnutls \
@@ -71,7 +70,6 @@ CONFIG := --prefix=/usr \
 	--enable-libopus \
 	--enable-libpulse \
 	--enable-librubberband \
-	--enable-libschroedinger \
 	--enable-libshine \
 	--enable-libsnappy \
 	--enable-libsoxr \
@@ -87,9 +85,10 @@ CONFIG := --prefix=/usr \
 	--enable-libxvid \
 	--enable-libzmq \
 	--enable-libzvbi \
+	--enable-omx \
+	--enable-openal \
 	--enable-opengl \
-	--enable-sdl2 \
-	--enable-x11grab
+	--enable-sdl2
 
 # The standard configuration only uses the shared CONFIG.
 CONFIG_standard = --enable-shared
@@ -131,7 +130,6 @@ endif
 
 # Some build-dependencies are not installable on some architectures.
 ifeq (,$(filter $(DEB_HOST_ARCH),powerpcspe))
-	CONFIG += --enable-openal
 	CONFIG_extra += --enable-netcdf
 endif
 
@@ -143,12 +141,12 @@ ifneq ($(filter stage1,$(DEB_BUILD_PROFILES)),)
 		--disable-libopencv \
 		--disable-libx264
 else
+	CONFIG += --enable-libopencv \
+		--enable-frei0r
 ifeq (,$(filter $(DEB_HOST_ARCH),powerpcspe))
-	CONFIG += --enable-frei0r \
-		--enable-libopencv \
-		--enable-libx264
+	CONFIG += --enable-libx264
 endif
-ifeq (,$(filter $(DEB_HOST_ARCH),m68k powerpcspe))
+ifeq (,$(filter $(DEB_HOST_ARCH),sh4))
 	CONFIG += --enable-chromaprint
 endif
 endif
@@ -250,12 +248,12 @@ override_dh_auto_test-arch:
 override_dh_auto_test-indep:
 
 override_dh_auto_install-arch:
-	dh_auto_install --sourcedirectory=debian/standard
+	dh_auto_install -a --sourcedirectory=debian/standard
 ifeq ($(DEB_HOST_ARCH),powerpc)
 	install -d debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
 	install -m 644 debian/altivec/*/*.so.* debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
 endif
-	dh_auto_install --sourcedirectory=debian/extra --destdir=debian/tmp/extra
+	dh_auto_install -a --sourcedirectory=debian/extra --destdir=debian/tmp/extra
 ifeq ($(DEB_HOST_ARCH),powerpc)
 	install -d debian/tmp/extra/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
 	install -m 644 debian/altivec-extra/*/*.so.* debian/tmp/extra/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
@@ -264,7 +262,7 @@ endif
 	install -m 644 debian/static/*/lib*.a debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_install-indep:
-	dh_auto_install --sourcedirectory=debian/standard
+	dh_auto_install -i --sourcedirectory=debian/standard
 
 override_dh_install:
 	dh_install $(addprefix -p,$(EXTRA_PKGS)) --sourcedir=debian/tmp/extra
