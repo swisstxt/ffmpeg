@@ -116,6 +116,12 @@ ifneq (,$(filter $(DEB_BUILD_OPTIONS),noopt))
 	CONFIG += --disable-optimizations
 endif
 
+# Compilation with PIE fails on i386 due to some ASM code with GCC 4.9
+ifneq (,$(filter $(DEB_HOST_ARCH),i386))
+	CC := gcc-4.8
+	CXX := g++-4.8
+endif
+
 # Respect CC/CXX from the environment, if they differ from the default.
 # Don't set them if they equal the default, because that disables autodetection needed for cross-building.
 ifneq ($(CC),cc)
@@ -199,20 +205,12 @@ endif
 
 # Add configuration options:
 override_dh_auto_configure:
-	# Compilation with PIE fails on i386 due to some ASM code
-ifneq (,$(filter $(DEB_HOST_ARCH),i386))
-	patch -p1 < debian/patches/disable-pie.patch
-endif
-
 	$(foreach flavor,$(FLAVORS),mkdir -p debian/$(flavor);)
 	$(foreach flavor,$(FLAVORS),set -e; echo " *** $(flavor) ***"; cd debian/$(flavor); ../../configure $(CONFIG) $(CONFIG_$(flavor)) || (cat config.log && exit 1); cd ../.. ;)
 	touch override_dh_auto_configure
 
 # Remove the subdirectories generated for the flavors.
 override_dh_auto_clean:
-ifneq (,$(filter $(DEB_HOST_ARCH),i386))
-	-patch -R -p1 < debian/patches/disable-pie.patch
-endif
 	$(foreach flavor,$(FLAVORS),[ ! -d debian/$(flavor) ] || rm -r debian/$(flavor);)
 
 # Create doxygen documentation:

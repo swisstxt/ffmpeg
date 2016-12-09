@@ -26,6 +26,9 @@ Build-Depends:
  flite1-dev,
 # --enable-frei0r
  frei0r-plugins-dev <!stage1>,
+# GCC 4.9 breaks the build with PIE enabled on i386
+ gcc-4.8 [i386],
+ g++-4.8 [i386],
 # --enable-ladspa
  ladspa-sdk,
 # --enable-libass
@@ -153,8 +156,6 @@ Build-Depends:
  libzmq3-dev,
 # --enable-libzvbi
  libzvbi-dev,
-# For applying patches conditionally
- patch,
 # The opencl API is considered experimental.
 # # --enable-opencl
 # ocl-icd-opencl-dev [!hurd-any] | opencl-dev [!hurd-any],
