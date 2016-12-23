@@ -14,6 +14,9 @@ include /usr/share/dpkg/architecture.mk
 # Ubuntu ld adds -Bsymbolic-functions by default, but that prevents FFmpeg from building.
 export DEB_LDFLAGS_MAINT_STRIP=-Wl,-Bsymbolic-functions
 
+# Hardened toolchain already adds -fstack-protector-all and -fstack-protector-strong is not supported by Jessie's gcc-4.8
+export DEB_CFLAGS_MAINT_STRIP=-fstack-protector-strong
+
 # Package name for the extra flavor.
 EXTRA_PKGS := $(shell sed -nr 's/^Package:[[:space:]]*(.*extra[0-9]+)[[:space:]]*$$/\1/p' debian/control)
 FLAVORS = standard extra static
