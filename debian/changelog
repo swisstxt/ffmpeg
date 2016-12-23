@@ -2,14 +2,16 @@ ffmpeg (7:3.2.2-1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
   * Build-depend on yasm to work around nasm issues in jessie
-  * Disable PIE on i386 by patching configure to fix FTBFS
   * Disable building with libebur128 because jessie's version breaks the
     build
   * Build-depend on libchromaprint-dev from jessie-backports
   * Disable OCR with Tesseract because it is missing the pkg-config file on
     jessie
+  * Omit -fstack-protector-strong from used CFLAGs, FFmpeg already sets -fstack-protector-all
+  * Use GCC 4.8 on i386 instead of disabling PIE
+  * Fix FTBFS on i386 due to PIC/PIE incompatible ASM
 
- -- Balint Reczey <balint@balintreczey.hu>  Fri, 09 Dec 2016 20:51:26 +0100
+ -- Balint Reczey <balint@balintreczey.hu>  Fri, 23 Dec 2016 16:21:05 +0100
 
 ffmpeg (7:3.2.2-1) unstable; urgency=medium
 
