@@ -75,6 +75,8 @@ Build-Depends:
  libleptonica-dev,
 # autodetected for the tiff decoder
  liblzma-dev,
+# --enable-libmodplug
+ libmodplug-dev,
 # --enable-libmp3lame
  libmp3lame-dev,
 # --enable-netcdf
@@ -91,8 +93,6 @@ Build-Depends:
  libopencv-imgproc-dev <!stage1>,
 # --enable-libopenjpeg
  libopenjp2-7-dev,
-# --enable-libopenmpt
- libopenmpt-dev,
 # --enable-libopus
  libopus-dev,
 # --enable-libpulse
