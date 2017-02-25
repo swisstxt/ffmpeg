@@ -1,4 +1,4 @@
-ffmpeg (7:3.2.2-1~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:3.2.4-1~bpo8+1) UNRELEASED; urgency=medium
 
   * Rebuild for jessie-backports.
   * Build-depend on yasm to work around nasm issues in jessie
@@ -11,7 +11,30 @@ ffmpeg (7:3.2.2-1~bpo8+1) jessie-backports; urgency=medium
   * Use GCC 4.8 on i386 instead of disabling PIE
   * Fix FTBFS on i386 due to PIC/PIE incompatible ASM
 
- -- Balint Reczey <balint@balintreczey.hu>  Fri, 23 Dec 2016 16:21:05 +0100
+ -- Balint Reczey <balint@balintreczey.hu>  Sat, 25 Feb 2017 12:34:25 +0100
+
+ffmpeg (7:3.2.4-1) unstable; urgency=medium
+
+  * Import new upstream bugfix release 3.2.4.
+     - Fixes CVE-2016-9561, CVE-2017-5024 and CVE-2017-5025.
+  * Drop patches, included upstream:
+     - lavf-chromaprint-Update-for-version-1.4.patch
+     - libopenmpt-add-missing-avio_read-return-value-check.patch
+     - swscale-save-ebx-register-when-it-is-not-available.patch
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Fri, 10 Feb 2017 22:24:45 +0100
+
+ffmpeg (7:3.2.2-2) unstable; urgency=medium
+
+  * Cherry-pick patches from upstream:
+     - Fix building with chromaprint 1.4. (Closes: #851026)
+     - Fix building with --disable-pic on gcc-4.8.
+     - Fix heap-buffer-overflows when using libopenmpt.
+  * Re-enable chromaprint on sh4 and libx264 on powerpcspe.
+  * Update packaging copyright years.
+  * Switch from libmodplug to libopenmpt. (Closes: #849840)
+
+ -- Andreas Cadhalpun <Andreas.Cadhalpun@googlemail.com>  Sat, 21 Jan 2017 22:39:40 +0100
 
 ffmpeg (7:3.2.2-1) unstable; urgency=medium
 
