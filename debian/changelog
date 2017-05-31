@@ -1,4 +1,4 @@
-ffmpeg (7:3.2.4-1~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:3.2.5-1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
   * Build-depend on yasm to work around nasm issues in jessie
@@ -14,7 +14,14 @@ ffmpeg (7:3.2.4-1~bpo8+1) jessie-backports; urgency=medium
   * Revert switch from libmodplug to libopenmpt because libopenmpt is not
     available in jessie-backports yet
 
- -- Balint Reczey <balint@balintreczey.hu>  Sun, 26 Feb 2017 18:21:53 +0100
+ -- Balint Reczey <rbalint@ubuntu.com>  Wed, 31 May 2017 23:36:34 +0200
+
+ffmpeg (7:3.2.5-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 22 May 2017 22:03:36 +0200
 
 ffmpeg (7:3.2.4-1) unstable; urgency=medium
 
