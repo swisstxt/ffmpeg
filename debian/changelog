@@ -1,4 +1,4 @@
-ffmpeg (7:3.2.7-1~deb9u1) UNRELEASED; urgency=medium
+ffmpeg (7:3.2.7-1~deb9u1) stretch-security; urgency=high
 
   * New upstream release.
     - apadec: Fix integer overflow. (CVE-2016-11399)
@@ -7,7 +7,7 @@ ffmpeg (7:3.2.7-1~deb9u1) UNRELEASED; urgency=medium
     - dnxhd_parser: Fix NULL pointer access. (CVE-2017-9608)
     - hls, avidec: Check file extensions. (CVE-2017-9993)
 
- -- Sebastian Ramacher <sramacher@debian.org>  Sat, 12 Aug 2017 13:56:19 +0200
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 28 Aug 2017 13:08:57 +0200
 
 ffmpeg (7:3.2.5-1) unstable; urgency=medium
 
