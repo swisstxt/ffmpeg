@@ -1,6 +1,11 @@
 ffmpeg (7:3.2.7-1~deb9u1) UNRELEASED; urgency=medium
 
   * New upstream release.
+    - apadec: Fix integer overflow. (CVE-2016-11399)
+    - rtmppkt: Fix out-of-bound access. (CVE-2017-11665)
+    - dnxhddec: Fix out-of-bound access. (CVE-2017-11719)
+    - dnxhd_parser: Fix NULL pointer access. (CVE-2017-9608)
+    - hls, avidec: Check file extensions. (CVE-2017-9993)
 
  -- Sebastian Ramacher <sramacher@debian.org>  Sat, 12 Aug 2017 13:56:19 +0200
 
