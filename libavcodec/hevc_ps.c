@@ -224,6 +224,12 @@ int ff_hevc_decode_short_term_rps(GetBitContext *gb, AVCodecContext *avctx,
             prev = 0;
             for (i = 0; i < rps->num_negative_pics; i++) {
                 delta_poc = get_ue_golomb_long(gb) + 1;
+                if (delta_poc < 1 || delta_poc > 32768) {
+                    av_log(avctx, AV_LOG_ERROR,
+                        "Invalid value of delta_poc: %d\n",
+                        delta_poc);
+                    return AVERROR_INVALIDDATA;
+                }
                 prev -= delta_poc;
                 rps->delta_poc[i] = prev;
                 rps->used[i]      = get_bits1(gb);
@@ -231,6 +237,12 @@ int ff_hevc_decode_short_term_rps(GetBitContext *gb, AVCodecContext *avctx,
             prev = 0;
             for (i = 0; i < nb_positive_pics; i++) {
                 delta_poc = get_ue_golomb_long(gb) + 1;
+                if (delta_poc < 1 || delta_poc > 32768) {
+                    av_log(avctx, AV_LOG_ERROR,
+                        "Invalid value of delta_poc: %d\n",
+                        delta_poc);
+                    return AVERROR_INVALIDDATA;
+                }
                 prev += delta_poc;
                 rps->delta_poc[rps->num_negative_pics + i] = prev;
                 rps->used[rps->num_negative_pics + i]      = get_bits1(gb);
@@ -1014,10 +1026,10 @@ int ff_hevc_parse_sps(HEVCSPS *sps, GetBitContext *gb, unsigned int *sps_id,
         sps->pcm.log2_min_pcm_cb_size = get_ue_golomb_long(gb) + 3;
         sps->pcm.log2_max_pcm_cb_size = sps->pcm.log2_min_pcm_cb_size +
                                         get_ue_golomb_long(gb);
-        if (sps->pcm.bit_depth > sps->bit_depth) {
+        if (FFMAX(sps->pcm.bit_depth, sps->pcm.bit_depth_chroma) > sps->bit_depth) {
             av_log(avctx, AV_LOG_ERROR,
-                   "PCM bit depth (%d) is greater than normal bit depth (%d)\n",
-                   sps->pcm.bit_depth, sps->bit_depth);
+                   "PCM bit depth (%d, %d) is greater than normal bit depth (%d)\n",
+                   sps->pcm.bit_depth, sps->pcm.bit_depth_chroma, sps->bit_depth);
             return AVERROR_INVALIDDATA;
         }
 
