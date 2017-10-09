@@ -1,4 +1,4 @@
-ffmpeg (7:3.2.8-1~deb9u1) stretch-security; urgency=medium
+ffmpeg (7:3.2.8-1~deb9u1) stretch-security; urgency=high
 
   * New upstream release.
     - avformat/rmdec: Fix DoS due to lack of eof check. (CVE-2017-14054)
