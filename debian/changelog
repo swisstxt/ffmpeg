@@ -1,3 +1,23 @@
+ffmpeg (7:3.2.8-1~deb9u1) stretch-security; urgency=medium
+
+  * New upstream release.
+    - avformat/rmdec: Fix DoS due to lack of eof check. (CVE-2017-14054)
+    - avformat/mvdec: Fix DoS due to lack of eof check. (CVE-2017-14055)
+    - avformat/rl2: Fix DoS due to lack of eof check. (CVE-2017-14056)
+    - avformat/asfdec: Fix DoS due to lack of eof check. (CVE-2017-14057)
+    - avformat/hls: Fix DoS due to infinite loop. (CVE-2017-14058)
+    - avformat/cinedec: Fix DoS due to lack of eof check. (CVE-2017-14059)
+    - avformat/mxfdec: Fix Sign error. (CVE-2017-14169)
+    - avformat/mxfdec: Fix DoS issues. (CVE-2017-14170)
+    - avformat/nsvdec: Fix DoS due to lack of eof check. (CVE-2017-14171)
+    - avformat/mov: Fix DoS. (CVE-2017-14222)
+    - avformat/asfdec: Fix DoS. (CVE-2017-14223)
+    - ffprobe: Fix null pointer dereference with color primaries.
+      (CVE-2017-14225)
+    - avformat/rtpdec_h264: Fix heap-buffer-overflow. (CVE-2017-14767)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 09 Oct 2017 18:57:17 +0200
+
 ffmpeg (7:3.2.7-1~deb9u1) stretch-security; urgency=high
 
   * New upstream release.
