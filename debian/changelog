@@ -1,3 +1,11 @@
+ffmpeg (7:3.2.9-1~deb9u1) UNRELEASED; urgency=medium
+
+  * New upstream release.
+    - avcodec/x86/lossless_videoencdsp: Fix out of array access.
+      (CVE-2017-15186)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 26 Nov 2017 21:06:37 +0100
+
 ffmpeg (7:3.2.8-1~deb9u1) stretch-security; urgency=high
 
   * New upstream release.
