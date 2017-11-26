@@ -1,12 +1,14 @@
-ffmpeg (7:3.2.9-1~deb9u1) UNRELEASED; urgency=medium
+ffmpeg (7:3.2.9-1~deb9u1) stretch-security; urgency=medium
 
   * New upstream release.
     - avcodec/x86/lossless_videoencdsp: Fix out of array access.
       (CVE-2017-15186)
     - avcodec/ffv1dec: Fix out of array read in slice counting.
       (CVE-2017-15672)
+  * debian/patches: avcodec/vc2enc_dwt: Fix out of bounds read.
+    (CVE-2017-16840)
 
- -- Sebastian Ramacher <sramacher@debian.org>  Sun, 26 Nov 2017 21:06:37 +0100
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 26 Nov 2017 21:29:26 +0100
 
 ffmpeg (7:3.2.8-1~deb9u1) stretch-security; urgency=high
 
