@@ -1,8 +1,14 @@
-ffmpeg (7:3.2.10-1~deb9u1) UNRELEASED; urgency=medium
+ffmpeg (7:3.2.10-1~deb9u1) stretch-security; urgency=medium
 
-  *
+  * New upstream release.
+    - avcodec/x86/mpegvideodsp: Fix signedness bug in need_emu.
+      (CVE-2017-17081)
+    - avformat/libssh: check the user provided a password before trying to
+      use it. (Closes: #886912)
+  * debian/patches:
+    - Drop CVE-2017-16840 patch - applied upstream.
 
- -- James Cowgill <jcowgill@debian.org>  Thu, 25 Jan 2018 18:44:21 +0000
+ -- James Cowgill <jcowgill@debian.org>  Fri, 26 Jan 2018 09:45:14 +0000
 
 ffmpeg (7:3.2.9-1~deb9u1) stretch-security; urgency=medium
 
