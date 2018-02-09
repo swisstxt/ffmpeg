@@ -248,7 +248,7 @@ enum dirac_subband {
 /* magic number division by 3 from schroedinger */
 static inline int divide3(int x)
 {
-    return ((x+1)*21845 + 10922) >> 16;
+    return (int)((x+1U)*21845 + 10922) >> 16;
 }
 
 static DiracFrame *remove_frame(DiracFrame *framelist[], int picnum)
@@ -436,7 +436,7 @@ static av_cold int dirac_decode_end(AVCodecContext *avctx)
 static inline int coeff_unpack_golomb(GetBitContext *gb, int qfactor, int qoffset)
 {
     int coeff = dirac_get_se_golomb(gb);
-    const int sign = FFSIGN(coeff);
+    const unsigned sign = FFSIGN(coeff);
     if (coeff)
         coeff = sign*((sign * coeff * qfactor + qoffset) >> 2);
     return coeff;
@@ -448,7 +448,8 @@ static inline int coeff_unpack_golomb(GetBitContext *gb, int qfactor, int qoffse
     static inline void coeff_unpack_arith_##n(DiracArith *c, int qfactor, int qoffset, \
                                               SubBand *b, type *buf, int x, int y) \
     { \
-        int coeff, sign, sign_pred = 0, pred_ctx = CTX_ZPZN_F1; \
+        int sign, sign_pred = 0, pred_ctx = CTX_ZPZN_F1; \
+        unsigned coeff; \
         const int mstride = -(b->stride >> (1+b->pshift)); \
         if (b->parent) { \
             const type *pbuf = (type *)b->parent->ibuf; \
@@ -501,16 +502,16 @@ static inline void codeblock(DiracContext *s, SubBand *b,
     }
 
     if (s->codeblock_mode && !(s->old_delta_quant && blockcnt_one)) {
-        int quant = b->quant;
+        int quant;
         if (is_arith)
-            quant += dirac_get_arith_int(c, CTX_DELTA_Q_F, CTX_DELTA_Q_DATA);
+            quant = dirac_get_arith_int(c, CTX_DELTA_Q_F, CTX_DELTA_Q_DATA);
         else
-            quant += dirac_get_se_golomb(gb);
-        if (quant < 0) {
+            quant = dirac_get_se_golomb(gb);
+        if (quant > INT_MAX - b->quant || b->quant + quant < 0) {
             av_log(s->avctx, AV_LOG_ERROR, "Invalid quant\n");
             return;
         }
-        b->quant = quant;
+        b->quant += quant;
     }
 
     if (b->quant > (DIRAC_MAX_QUANT_INDEX - 1)) {
@@ -579,7 +580,7 @@ static inline void codeblock(DiracContext *s, SubBand *b,
     } \
 
 INTRA_DC_PRED(8, int16_t)
-INTRA_DC_PRED(10, int32_t)
+INTRA_DC_PRED(10, uint32_t)
 
 /**
  * Dirac Specification ->
@@ -817,7 +818,7 @@ static int decode_hq_slice(DiracContext *s, DiracSlice *slice, uint8_t *tmp_buf)
     skip_bits_long(gb, 8*s->highquality.prefix_bytes);
     quant_idx = get_bits(gb, 8);
 
-    if (quant_idx > DIRAC_MAX_QUANT_INDEX) {
+    if (quant_idx > DIRAC_MAX_QUANT_INDEX - 1) {
         av_log(s->avctx, AV_LOG_ERROR, "Invalid quantization index - %i\n", quant_idx);
         return AVERROR_INVALIDDATA;
     }
@@ -1154,6 +1155,10 @@ static int dirac_unpack_prediction_parameters(DiracContext *s)
                 s->globalmc[ref].perspective[0]  = dirac_get_se_golomb(gb);
                 s->globalmc[ref].perspective[1]  = dirac_get_se_golomb(gb);
             }
+            if (s->globalmc[ref].perspective_exp + (uint64_t)s->globalmc[ref].zrs_exp > 30) {
+                return AVERROR_INVALIDDATA;
+            }
+
         }
     }
 
@@ -1172,6 +1177,11 @@ static int dirac_unpack_prediction_parameters(DiracContext *s)
 
     if (get_bits1(gb)) {
         s->weight_log2denom = get_interleaved_ue_golomb(gb);
+        if (s->weight_log2denom < 1 || s->weight_log2denom > 8) {
+            av_log(s->avctx, AV_LOG_ERROR, "weight_log2denom unsupported or invalid\n");
+            s->weight_log2denom = 1;
+            return AVERROR_INVALIDDATA;
+        }
         s->weight[0] = dirac_get_se_golomb(gb);
         if (s->num_refs == 2)
             s->weight[1] = dirac_get_se_golomb(gb);
@@ -1406,7 +1416,7 @@ static void decode_block_params(DiracContext *s, DiracArith arith[8], DiracBlock
     if (!block->ref) {
         pred_block_dc(block, stride, x, y);
         for (i = 0; i < 3; i++)
-            block->u.dc[i] += dirac_get_arith_int(arith+1+i, CTX_DC_F1, CTX_DC_DATA);
+            block->u.dc[i] += (unsigned)dirac_get_arith_int(arith+1+i, CTX_DC_F1, CTX_DC_DATA);
         return;
     }
 

@@ -16,6 +16,61 @@ ffmpeg (7:3.2.5-1~bpo8+1) jessie-backports; urgency=medium
 
  -- Balint Reczey <rbalint@ubuntu.com>  Wed, 31 May 2017 23:36:34 +0200
 
+ffmpeg (7:3.2.10-1~deb9u1) stretch-security; urgency=medium
+
+  * New upstream release.
+    - avcodec/x86/mpegvideodsp: Fix signedness bug in need_emu.
+      (CVE-2017-17081)
+    - avformat/libssh: check the user provided a password before trying to
+      use it. (Closes: #886912)
+  * debian/patches:
+    - Drop CVE-2017-16840 patch - applied upstream.
+
+ -- James Cowgill <jcowgill@debian.org>  Fri, 26 Jan 2018 09:45:14 +0000
+
+ffmpeg (7:3.2.9-1~deb9u1) stretch-security; urgency=medium
+
+  * New upstream release.
+    - avcodec/x86/lossless_videoencdsp: Fix out of array access.
+      (CVE-2017-15186)
+    - avcodec/ffv1dec: Fix out of array read in slice counting.
+      (CVE-2017-15672)
+  * debian/patches: avcodec/vc2enc_dwt: Fix out of bounds read.
+    (CVE-2017-16840)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 26 Nov 2017 21:29:26 +0100
+
+ffmpeg (7:3.2.8-1~deb9u1) stretch-security; urgency=high
+
+  * New upstream release.
+    - avformat/rmdec: Fix DoS due to lack of eof check. (CVE-2017-14054)
+    - avformat/mvdec: Fix DoS due to lack of eof check. (CVE-2017-14055)
+    - avformat/rl2: Fix DoS due to lack of eof check. (CVE-2017-14056)
+    - avformat/asfdec: Fix DoS due to lack of eof check. (CVE-2017-14057)
+    - avformat/hls: Fix DoS due to infinite loop. (CVE-2017-14058)
+    - avformat/cinedec: Fix DoS due to lack of eof check. (CVE-2017-14059)
+    - avformat/mxfdec: Fix Sign error. (CVE-2017-14169)
+    - avformat/mxfdec: Fix DoS issues. (CVE-2017-14170)
+    - avformat/nsvdec: Fix DoS due to lack of eof check. (CVE-2017-14171)
+    - avformat/mov: Fix DoS. (CVE-2017-14222)
+    - avformat/asfdec: Fix DoS. (CVE-2017-14223)
+    - ffprobe: Fix null pointer dereference with color primaries.
+      (CVE-2017-14225)
+    - avformat/rtpdec_h264: Fix heap-buffer-overflow. (CVE-2017-14767)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 09 Oct 2017 18:57:17 +0200
+
+ffmpeg (7:3.2.7-1~deb9u1) stretch-security; urgency=high
+
+  * New upstream release.
+    - apadec: Fix integer overflow. (CVE-2016-11399)
+    - rtmppkt: Fix out-of-bound access. (CVE-2017-11665)
+    - dnxhddec: Fix out-of-bound access. (CVE-2017-11719)
+    - dnxhd_parser: Fix NULL pointer access. (CVE-2017-9608)
+    - hls, avidec: Check file extensions. (CVE-2017-9993)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 28 Aug 2017 13:08:57 +0200
+
 ffmpeg (7:3.2.5-1) unstable; urgency=medium
 
   * Team upload.
