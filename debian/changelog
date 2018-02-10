@@ -1,20 +1,20 @@
-ffmpeg (7:3.2.5-1~bpo8+1) jessie-backports; urgency=medium
+ffmpeg (7:3.2.10-1~deb9u1~bpo8+1) jessie-backports; urgency=medium
 
   * Rebuild for jessie-backports.
-  * Build-depend on yasm to work around nasm issues in jessie
-  * Disable building with libebur128 because jessie's version breaks the
-    build
-  * Build-depend on libchromaprint-dev from jessie-backports
-  * Disable OCR with Tesseract because it is missing the pkg-config file on
-    jessie
-  * Omit -fstack-protector-strong from used CFLAGs, FFmpeg already sets
-    -fstack-protector-all
-  * Use GCC 4.8 on i386 instead of disabling PIE
-  * Fix FTBFS on i386 due to PIC/PIE incompatible ASM
-  * Revert switch from libmodplug to libopenmpt because libopenmpt is not
-    available in jessie-backports yet
+  * Merge jessie specific changes:
+    - Build-depend on yasm to work around nasm issues in jessie.
+    - Disable building with libebur128 because jessie's version breaks the
+      build.
+    - Build-depend on libchromaprint-dev from jessie-backports.
+    - Disable OCR with Tesseract because it is missing the pkg-config file on
+      jessie.
+    - Omit -fstack-protector-strong from used CFLAGS, FFmpeg already sets
+      -fstack-protector-all.
+    - Use GCC 4.8 on i386 instead of disabling PIE.
+    - Revert switch from libmodplug to libopenmpt because libopenmpt is not
+      available in jessie-backports yet.
 
- -- Balint Reczey <rbalint@ubuntu.com>  Wed, 31 May 2017 23:36:34 +0200
+ -- James Cowgill <jcowgill@debian.org>  Sat, 10 Feb 2018 00:45:48 +0000
 
 ffmpeg (7:3.2.10-1~deb9u1) stretch-security; urgency=medium
 
