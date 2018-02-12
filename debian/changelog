@@ -1,3 +1,10 @@
+ffmpeg (7:3.4.2-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Fixes CVE-2018-6392, CVE-2018-6621.
+
+ -- James Cowgill <jcowgill@debian.org>  Mon, 12 Feb 2018 20:08:34 +0000
+
 ffmpeg (7:3.4.1-1) unstable; urgency=medium
 
   * New upstream release.
