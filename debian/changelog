@@ -1,5 +1,6 @@
-ffmpeg (7:3.4.3-1) UNRELEASED; urgency=medium
+ffmpeg (7:3.4.3-1) unstable; urgency=medium
 
+  * Team upload.
   * New upstream release.
     - avfilter/vf_signature: use av_strlcpy(). (CVE-2018-9841)
     - avformat/img2dec: fix infinite loop. (CVE-2018-7751)
@@ -12,8 +13,9 @@ ffmpeg (7:3.4.3-1) UNRELEASED; urgency=medium
     - avcodec/mpeg4videoenc: Use 64 bit for times in
       mpeg4_encode_gop_header(). (CVE-2018-12458)
     - avcodec/utvideodec: Set pro flag based on fourcc. (CVE-2018-10001)
+  * debian/control: Bump Standards-Version.
 
- -- Sebastian Ramacher <sramacher@debian.org>  Tue, 10 Jul 2018 21:49:09 +0200
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 10 Jul 2018 22:26:18 +0200
 
 ffmpeg (7:3.4.2-2) unstable; urgency=medium
 
