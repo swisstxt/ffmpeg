@@ -1,6 +1,17 @@
 ffmpeg (7:3.4.3-1) UNRELEASED; urgency=medium
 
   * New upstream release.
+    - avfilter/vf_signature: use av_strlcpy(). (CVE-2018-9841)
+    - avformat/img2dec: fix infinite loop. (CVE-2018-7751)
+    - avcodec/utvideodec: Check subsample factors. (CVE-2018-7557)
+    - avformat/movenc: Check that frame_types other than
+      EAC3_FRAME_TYPE_INDEPENDENT have a supported substream id.
+      (CVE-2018-13302)
+    - avformat/movenc: Do not pass AVCodecParameters in avpriv_request_sample.
+      (CVE-2018-13300)
+    - avcodec/mpeg4videoenc: Use 64 bit for times in
+      mpeg4_encode_gop_header(). (CVE-2018-12458)
+    - avcodec/utvideodec: Set pro flag based on fourcc. (CVE-2018-10001)
 
  -- Sebastian Ramacher <sramacher@debian.org>  Tue, 10 Jul 2018 21:49:09 +0200
 
