@@ -758,7 +758,9 @@ Architecture: all
 Section: oldlibs
 Priority: extra
 Multi-Arch: foreign
-Breaks: libav-tools-links (<< 7:2.7.2-2~)
+Breaks:
+ libav-tools-links (<< 7:2.7.2-2~),
+ vokoscreen (<< 2.2.0)
 Replaces: libav-tools-links (<< 7:2.7.2-2~)
 Depends:
  ffmpeg,
