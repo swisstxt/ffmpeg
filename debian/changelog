@@ -1,3 +1,13 @@
+ffmpeg (7:3.2.12-1~deb9u1) stretch-security; urgency=medium
+
+  * New upstream release.
+    - avformat/movenc: Write version 2 of audio atom if channels is not known.
+      (CVE-2018-14395)
+    - avcodec/imgconvert: fix possible null pointer dereference.
+      (Closes: #904123)
+
+ -- James Cowgill <jcowgill@debian.org>  Sat, 28 Jul 2018 16:27:42 +0800
+
 ffmpeg (7:3.2.11-1~deb9u1) stretch-security; urgency=medium
 
   * New upstream release.
