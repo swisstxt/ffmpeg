@@ -1,3 +1,10 @@
+ffmpeg (7:4.1.9-0+deb10u1) buster-security; urgency=medium
+
+  * New upstream release.
+    - Drop 0001-fix-mxfenc-index.patch, contained in new release
+
+ -- Moritz Mühlenhoff <jmm@debian.org>  Wed, 27 Apr 2022 00:11:27 +0200
+
 ffmpeg (7:4.1.8-0+deb10u1) buster-security; urgency=high
 
   [ Sebastian Ramacher ]
