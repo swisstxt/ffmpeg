@@ -87,8 +87,6 @@ Build-Depends:
  liblilv-dev,
 # autodetected for the tiff decoder
  liblzma-dev,
-# --enable-libmfx
- libmfx-dev [amd64],
 # --enable-libmp3lame
  libmp3lame-dev,
 # --enable-libmysofa
@@ -162,6 +160,8 @@ Build-Depends:
  libvo-amrwbenc-dev,
 # --enable-libvorbis
  libvorbis-dev,
+# --enable-libvpl
+ libvpl-dev [amd64],
 # --enable-libvpx
  libvpx-dev,
 # autodetected: vulkan

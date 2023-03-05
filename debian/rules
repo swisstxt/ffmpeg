@@ -86,21 +86,22 @@ CONFIG += --disable-sndio
 
 # avoid libjxl on alpha for now
 ifneq (alpha,$(DEB_HOST_ARCH))
-CONFIG += --enable-libjxl
+	CONFIG += --enable-libjxl
 endif
 
 # avoid pocketsphinx on mips (bug#812335), alpha, ia64 and big-endian (bug#968456)
 ifeq (,$(filter mips% alpha ia64,$(DEB_HOST_ARCH))$(filter big,$(DEB_HOST_ARCH_ENDIAN)))
-CONFIG += --enable-pocketsphinx
+	CONFIG += --enable-pocketsphinx
 endif
 
 # avoid librsvg on almost all ports (bug#983344, bug#991556)
 ifeq (,$(filter alpha hppa hurd-i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k sh4 x32,$(DEB_HOST_ARCH)))
-CONFIG += --enable-librsvg
+	CONFIG += --enable-librsvg
 endif
 
 ifeq (amd64,$(DEB_HOST_ARCH))
-CONFIG += --enable-libmfx
+	CONFIG += --enable-libvpl \
+		--disable-libmfx
 endif
 
 # The standard configuration only uses the shared CONFIG.
