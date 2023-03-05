@@ -443,7 +443,7 @@ Architecture: any
 Section: metapackages
 Multi-Arch: same
 Depends:
- libavfilter-extra8 (= ${binary:Version}),
+ libavfilter-extra9 (= ${binary:Version}),
  ${misc:Depends}
 Description: FFmpeg library with extra filters (metapackage)
  FFmpeg is the leading multimedia framework, able to decode, encode, transcode,
