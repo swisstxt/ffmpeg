@@ -1,14 +1,23 @@
-ffmpeg (7:6.0-1) UNRELEASED; urgency=medium
+ffmpeg (7:6.0-1) experimental; urgency=medium
 
   * New upstream version 6.0
-  * SONAME bump
+  * SONAME bumps
+    - libavcodec59 -> libavcodec60
+    - libavdevice59 -> libavdevice60
+    - libavfilter8 -> libavfilter9
+    - libavformat59 -> libavformat60
+    - libavutil57 -> libavutil58
+    - libpostproc56 -> libpostproc57
+    - libswscale6 -> libswscale7
   * debian/patches: Remove patches included upstream
   * debian/gbp.conf: Work in debian/experimental
   * debian/: Build with oneVPL support (Closes: #1023718)
   * debian/control: Remove lbgl1-mesa-dev from Build-Depends
-  * TODO: Update debian/copyright
+  * debian/copyright:
+    - Update copyright years
+    - Update file paths
 
- -- Sebastian Ramacher <sramacher@debian.org>  Sun, 05 Mar 2023 12:12:21 +0100
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 05 Mar 2023 15:47:45 +0100
 
 ffmpeg (7:5.1.2-3) unstable; urgency=medium
 
