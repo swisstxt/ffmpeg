@@ -1,3 +1,15 @@
+ffmpeg (7:6.0-1) UNRELEASED; urgency=medium
+
+  * New upstream version 6.0
+  * SONAME bump
+  * debian/patches: Remove patches included upstream
+  * debian/gbp.conf: Work in debian/experimental
+  * debian/: Build with oneVPL support (Closes: #1023718)
+  * debian/control: Remove lbgl1-mesa-dev from Build-Depends
+  * TODO: Update debian/copyright
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 05 Mar 2023 12:12:21 +0100
+
 ffmpeg (7:5.1.2-3) unstable; urgency=medium
 
   * debian/rules: Disable more tests on ppc64 (Closes: #1022764)
