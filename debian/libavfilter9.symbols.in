@@ -1,7 +1,7 @@
 # SymbolsHelper-Confirmed: 7:6.0 amd64
 libavfilter.so.9 libavfilter9 #MINVER#
 * Build-Depends-Package: libavfilter-dev
- LIBAVFILTER_9@LIBAVFILTER_9 7:6.0
+ LIBAVFILTER_9@LIBAVFILTER_9 @DEB_VERSION_EPOCH_UPSTREAM@
  av_buffersink_get_ch_layout@LIBAVFILTER_9 7:6.0
  av_buffersink_get_channel_layout@LIBAVFILTER_9 7:6.0
  av_buffersink_get_channels@LIBAVFILTER_9 7:6.0

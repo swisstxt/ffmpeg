@@ -1,7 +1,7 @@
 # SymbolsHelper-Confirmed: 7:6.0 amd64
 libswscale.so.7 libswscale7 #MINVER#
 * Build-Depends-Package: libswscale-dev
- LIBSWSCALE_7@LIBSWSCALE_7 7:6.0
+ LIBSWSCALE_7@LIBSWSCALE_7 @DEB_VERSION_EPOCH_UPSTREAM@
  sws_allocVec@LIBSWSCALE_7 7:6.0
  sws_alloc_context@LIBSWSCALE_7 7:6.0
  sws_alloc_set_opts@LIBSWSCALE_7 7:6.0
