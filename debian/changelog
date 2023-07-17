@@ -1,7 +1,15 @@
+ffmpeg (7:6.0-3) experimental; urgency=medium
+
+  * debian/tests: No longer test deprecated ayuv codec
+  * debian/patches: Fix build with binutils 2.41
+  * debian/: Remove handling of kfreebsd
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 17 Jul 2023 22:22:59 +0200
+
 ffmpeg (7:6.0-2) experimental; urgency=medium
 
-  * debian/Produce tight dependencies only for internal use of avpriv symbols
-    (Closes: #1034315)
+  * debian/: Produce tight dependencies only for internal use of avpriv
+    symbols (Closes: #1034315)
 
  -- Sebastian Ramacher <sramacher@debian.org>  Thu, 13 Apr 2023 23:24:21 +0200
 
