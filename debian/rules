@@ -95,7 +95,7 @@ ifeq (,$(filter mips% alpha ia64,$(DEB_HOST_ARCH))$(filter big,$(DEB_HOST_ARCH_E
 endif
 
 # avoid librsvg on almost all ports (bug#983344, bug#991556)
-ifeq (,$(filter alpha hppa hurd-i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k sh4 x32,$(DEB_HOST_ARCH)))
+ifeq (,$(filter alpha hppa hurd-i386 ia64 m68k sh4 x32,$(DEB_HOST_ARCH)))
 	CONFIG += --enable-librsvg
 endif
 
@@ -171,7 +171,7 @@ else
 	CONFIG += --disable-libplacebo
 endif
 # Rust not available on most of ports
-ifeq (,$(filter alpha hppa hurd-i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k riscv64 sh4 sparc64 x32,$(DEB_HOST_ARCH)))
+ifeq (,$(filter alpha hppa hurd-i386 ia64 m68k riscv64 sh4 sparc64 x32,$(DEB_HOST_ARCH)))
 	CONFIG += --enable-librav1e
 else
 	CONFIG += --disable-librav1e
