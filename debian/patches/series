@@ -1,0 +1,5 @@
+0001-avcodec-x86-mathops-clip-constants-used-with-shift-i.patch
+0002-avcodec-libsvtav1-replace-vbv_bufsize-with-maximum_b.patch
+0003-avcodec-libsvtav1-remove-compressed_ten_bit_format-a.patch
+0004-avcodec-libsvtav1-only-set-max_buf_sz-if-both-bitrat.patch
+0005-avcodec-libsvtav1-use-larger-of-bit-rate-and-max-rat.patch
