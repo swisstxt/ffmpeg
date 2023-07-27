@@ -1,1 +1,2 @@
 0001-avcodec-x86-mathops-clip-constants-used-with-shift-i.patch
+0002-examples-fix-build-of-mux-and-resample_audio.patch
