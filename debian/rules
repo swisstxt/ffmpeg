@@ -170,8 +170,8 @@ ifeq (linux,$(DEB_HOST_ARCH_OS))
 else
 	CONFIG += --disable-libplacebo
 endif
-# Rust not available on most of ports
-ifeq (,$(filter alpha hppa hurd-i386 ia64 m68k riscv64 sh4 sparc64 x32,$(DEB_HOST_ARCH)))
+# Rust is not available on most of ports.
+ifeq (,$(filter alpha hppa hurd-i386 ia64 m68k sh4 sparc64 x32,$(DEB_HOST_ARCH)))
 	CONFIG += --enable-librav1e
 else
 	CONFIG += --disable-librav1e
