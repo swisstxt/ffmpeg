@@ -159,7 +159,7 @@ else
 	CONFIG += \
 		--enable-chromaprint \
 		--enable-frei0r \
-		--disable-libsvtav1 \
+		--enable-libsvtav1 \
 		--enable-libx264
 # Some libraries are built only on linux.
 ifeq (linux,$(DEB_HOST_ARCH_OS))
