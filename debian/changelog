@@ -1,3 +1,10 @@
+ffmpeg (7:6.0-8) unstable; urgency=medium
+
+  * debian/: Re-enable libsvtav1 (Closes: #1055058)
+  * debian/rules: Remove mips(el)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 30 Oct 2023 21:55:47 +0100
+
 ffmpeg (7:6.0-7) unstable; urgency=medium
 
   * debian/: Disable libsvtav1 to unblock transition
