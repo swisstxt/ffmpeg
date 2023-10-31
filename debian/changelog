@@ -1,3 +1,10 @@
+ffmpeg (7:6.0-9) unstable; urgency=medium
+
+  * debian/patches: Workaround build issues with texinfo 7.1 (Closes:
+    #1055111)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 01 Nov 2023 00:06:10 +0100
+
 ffmpeg (7:6.0-8) unstable; urgency=medium
 
   * debian/: Re-enable libsvtav1 (Closes: #1055058)
