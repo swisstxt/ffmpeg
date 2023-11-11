@@ -1,4 +1,3 @@
-# SymbolsHelper-Confirmed: 7:6.0 amd64
 libavutil.so.58 libavutil58 #MINVER#
 | libavutil58 (= @DEB_VERSION@)
 * Build-Depends-Package: libavutil-dev

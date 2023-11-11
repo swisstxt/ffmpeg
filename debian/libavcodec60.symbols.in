@@ -1,4 +1,3 @@
-# SymbolsHelper-Confirmed: 7:6.0 amd64
 libavcodec.so.60 libavcodec60 #MINVER#
 | libavcodec60 (= @DEB_VERSION@)
 * Build-Depends-Package: libavcodec-dev

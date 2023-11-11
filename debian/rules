@@ -229,9 +229,8 @@ ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 		--target-os=$(DEB_HOST_ARCH_OS)
 endif
 
-# Use the default debhelper scripts, where possible.
 %:
-	dh $@ --with pkgkde_symbolshelper
+	dh $@
 
 # Add configuration options:
 override_dh_auto_configure: $(patsubst %,configure_%,$(FLAVORS))
