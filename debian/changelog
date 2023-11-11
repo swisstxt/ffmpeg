@@ -1,3 +1,12 @@
+ffmpeg (7:6.1-1) unstable; urgency=medium
+
+  * New upstream version 6.1
+  * debian/patches: Remove patches included upstream
+  * debian/: Remove use of pkgkde_symbolshelper
+  * debian/*.symbols: Add new symbols
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 11 Nov 2023 13:02:47 +0100
+
 ffmpeg (7:6.0-9) unstable; urgency=medium
 
   * debian/patches: Workaround build issues with texinfo 7.1 (Closes:
