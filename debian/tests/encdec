@@ -178,7 +178,7 @@ list_codecs() {
             echo "${type,,}=$codec"
         else
             # de/encoder(s) name(s) differ from codec name
-            items=$(echo "$items" | sed "s/.*($what: \([^)]*\) ).*/\1/")
+            items=$(echo "$items" | sed "s/.*($what: \([^)]*\)).*/\1/")
             IFS=" "
             for item in $items; do
                 echo "${type,,}=$codec:$item"
