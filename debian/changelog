@@ -1,3 +1,13 @@
+ffmpeg (7:6.1-2) unstable; urgency=medium
+
+  * debian/patches: Fix segfault when freeing FFT instances
+  * debian/tests:
+    - Fix parsing of encoders and decoders
+    - Fix file name for hls tests
+    - Disable streamcopy test of matroska/gif
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 12 Nov 2023 15:38:18 +0100
+
 ffmpeg (7:6.1-1) unstable; urgency=medium
 
   * New upstream version 6.1
