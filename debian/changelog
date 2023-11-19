@@ -1,3 +1,10 @@
+ffmpeg (7:6.1-3) unstable; urgency=medium
+
+  * debian/patches: Fix crash in vlc hardware decoder (Closes: #1055952,
+    #1056058, #1056149)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 19 Nov 2023 10:48:05 +0100
+
 ffmpeg (7:6.1-2) unstable; urgency=medium
 
   * debian/patches: Fix segfault when freeing FFT instances
