@@ -192,6 +192,8 @@ Build-Depends:
  libzvbi-dev,
 # --enable-opencl
  ocl-icd-opencl-dev | opencl-dev,
+# --enable-libharfbuzz
+ libharfbuzz-dev,
 # used to detect libraries
  pkg-config,
 # HTML documentation
