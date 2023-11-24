@@ -75,6 +75,8 @@ Build-Depends:
  libgnutls28-dev,
 # --enable-libgsm
  libgsm1-dev,
+# --enable-libharfbuzz
+ libharfbuzz-dev,
 # Fails to be detected by configure script, if not also libavc1394-dev is installed.
 # --enable-libiec61883
  libiec61883-dev [linux-any],
@@ -192,8 +194,6 @@ Build-Depends:
  libzvbi-dev,
 # --enable-opencl
  ocl-icd-opencl-dev | opencl-dev,
-# --enable-libharfbuzz
- libharfbuzz-dev,
 # used to detect libraries
  pkg-config,
 # HTML documentation
