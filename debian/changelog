@@ -1,9 +1,9 @@
-ffmpeg (7:6.1-5) UNRELEASED; urgency=medium
+ffmpeg (7:6.1-5) unstable; urgency=medium
 
   [ - ]
   * debian/: Build with harfbuzz (Closes: #1056597)
 
- -- Sebastian Ramacher <sramacher@debian.org>  Fri, 24 Nov 2023 23:05:22 +0100
+ -- Sebastian Ramacher <sramacher@debian.org>  Sat, 02 Dec 2023 12:59:43 +0100
 
 ffmpeg (7:6.1-4) unstable; urgency=medium
 
