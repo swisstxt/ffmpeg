@@ -195,7 +195,7 @@ Build-Depends:
 # --enable-opencl
  ocl-icd-opencl-dev | opencl-dev,
 # used to detect libraries
- pkg-config,
+ pkgconf,
 # HTML documentation
  texinfo,
 # assembler optimizations
