@@ -1,2 +1,0 @@
-0001-avcodec-avfft-initialize-to-0-to-avoid-segfaults-whe.patch
-0002-avcodec-decode-validate-hw_frames_ctx-when-AVHWAccel.patch
