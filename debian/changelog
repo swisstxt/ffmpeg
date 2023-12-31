@@ -1,3 +1,13 @@
+ffmpeg (7:6.1.1-1) unstable; urgency=medium
+
+  * New upstream version 6.1.1
+  * debian/control: Use pkgconf
+  * debian/patches: Remove patches included upstream
+  * debian/copyright: Remove unused file patterns
+  * debian/*.lintian-overrides: Update due renamed tags
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 31 Dec 2023 10:42:58 +0100
+
 ffmpeg (7:6.1-5) unstable; urgency=medium
 
   [ - ]
