@@ -1,3 +1,9 @@
+ffmpeg (7:6.1.1-2) unstable; urgency=medium
+
+  * debian/patches: Fix compilation with glslang 14 (Closes: #1064740)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Wed, 28 Feb 2024 23:26:37 +0100
+
 ffmpeg (7:6.1.1-1) unstable; urgency=medium
 
   * New upstream version 6.1.1
