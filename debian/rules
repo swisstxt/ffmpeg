@@ -17,7 +17,10 @@ export DEB_LDFLAGS_MAINT_STRIP=-Wl,-Bsymbolic-functions
 # Package name for the extra flavor.
 SHLIB_PKGS := $(shell sed -nr '/extra/! s/^Package:[[:space:]]*(lib.*[0-9]+)[[:space:]]*$$/\1/p' debian/control)
 EXTRA_PKGS := $(shell sed -nr 's/^Package:[[:space:]]*(.*extra[0-9]+)[[:space:]]*$$/\1/p' debian/control)
-FLAVORS = standard extra static
+FLAVORS = standard static
+ifeq ($(filter pkg.ffmpeg.noextra,$(DEB_BUILD_PROFILES)),)
+FLAVORS += extra
+endif
 
 # Most possible features, compatible with effective licensing of GPLv2+
 CONFIG := --prefix=/usr \
@@ -293,7 +296,9 @@ ifeq (powerpc,$(DEB_HOST_ARCH))
 	install -d debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
 	install -m 644 debian/altivec/*/*.so.* debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
 endif
+ifeq ($(filter pkg.ffmpeg.noextra,$(DEB_BUILD_PROFILES)),)
 	dh_auto_install -a --sourcedirectory=debian/extra --destdir=debian/tmp/extra
+endif
 ifeq (powerpc,$(DEB_HOST_ARCH))
 	install -d debian/tmp/extra/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
 	install -m 644 debian/altivec-extra/*/*.so.* debian/tmp/extra/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
@@ -305,17 +310,21 @@ override_dh_auto_install-indep:
 	cd debian/tmp/usr/share/doc/ffmpeg && tree -H '.' -L 1 -P '*.html' --noreport --charset utf-8 -T 'FFmpeg Manual Index' -o index.html
 
 override_dh_install:
+ifeq ($(filter pkg.ffmpeg.noextra,$(DEB_BUILD_PROFILES)),)
 	dh_install $(addprefix -p,$(EXTRA_PKGS)) --sourcedir=debian/tmp/extra
+endif
 	dh_install --remaining-packages
 
 debian/%.symbols: debian/%.symbols.in
 	sed 's/@DEB_VERSION@/${DEB_VERSION}/;s/@DEB_VERSION_EPOCH_UPSTREAM@/${DEB_VERSION_EPOCH_UPSTREAM}/' $< > $@
 
+ifeq ($(filter pkg.ffmpeg.noextra,$(DEB_BUILD_PROFILES)),)
 execute_before_dh_makeshlibs: $(patsubst %,debian/%.symbols,$(SHLIB_PKGS))
 	set -e && for pkg in $(EXTRA_PKGS); do \
 		mainpkg=`echo $$pkg | sed 's/-extra//'`; \
 		cp -f debian/$$mainpkg.symbols debian/$$pkg.symbols; \
 	done
+endif
 
 # avoid error: Unknown DWARF DW_OP_0
 override_dh_dwz:

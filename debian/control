@@ -36,7 +36,7 @@ Build-Depends:
 # --enable-libaom
  libaom-dev,
 # --enable-libaribb24
- libaribb24-dev,
+ libaribb24-dev <!pkg.ffmpeg.noextra>,
 # --enable-libass
  libass-dev,
 # --enable-libbluray
@@ -98,9 +98,9 @@ Build-Depends:
 # --enable-omx
  libomxil-bellagio-dev,
 # --enable-libopencore_amrnb
- libopencore-amrnb-dev,
+ libopencore-amrnb-dev <!pkg.ffmpeg.noextra>,
 # --enable-libopencore_amrwb
- libopencore-amrwb-dev,
+ libopencore-amrwb-dev <!pkg.ffmpeg.noextra>,
 # --enable-libopenjpeg
  libopenjp2-7-dev (>= 2.1),
 # --enable-libopenmpt
@@ -130,7 +130,7 @@ Build-Depends:
 # --enable-libshine
  libshine-dev (>= 3.0.0),
 # --enable-libsmbclient (used only in -extra flavor)
- libsmbclient-dev (>= 4.13) [!hurd-i386],
+ libsmbclient-dev (>= 4.13) [!hurd-i386] <!pkg.ffmpeg.noextra>,
 # --enable-libsnappy
  libsnappy-dev,
 # --enable-libsoxr
@@ -144,7 +144,7 @@ Build-Depends:
 # --enable-libsvtav1
  libsvtav1enc-dev <!pkg.ffmpeg.stage1>,
 # --enable-libtesseract (used only in -extra flavor)
- libtesseract-dev,
+ libtesseract-dev <!pkg.ffmpeg.noextra>,
 # --enable-libtheora
  libtheora-dev,
 # --enable-libtwolame
@@ -159,7 +159,7 @@ Build-Depends:
 # --enable-libvidstab
  libvidstab-dev,
 # --enable-libvo_amrwbenc
- libvo-amrwbenc-dev,
+ libvo-amrwbenc-dev <!pkg.ffmpeg.noextra>,
 # --enable-libvorbis
  libvorbis-dev,
 # --enable-libvpl
@@ -269,6 +269,7 @@ Description: FFmpeg library with de/encoders for audio/video codecs - runtime fi
  This package contains the runtime files.
 
 Package: libavcodec-extra60
+Build-Profiles: <!pkg.ffmpeg.noextra>
 Architecture: any
 Section: libs
 Multi-Arch: same
@@ -308,6 +309,7 @@ Description: FFmpeg library with additional de/encoders for audio/video codecs
  GPL version 3 or later.
 
 Package: libavcodec-extra
+Build-Profiles: <!pkg.ffmpeg.noextra>
 Architecture: any
 Section: metapackages
 Multi-Arch: same
@@ -413,6 +415,7 @@ Description: FFmpeg library containing media filters - runtime files
  This package contains the runtime files.
 
 Package: libavfilter-extra9
+Build-Profiles: <!pkg.ffmpeg.noextra>
 Architecture: any
 Section: libs
 Multi-Arch: same
@@ -440,6 +443,7 @@ Description: FFmpeg library with extra media filters - runtime files
  GPL version 3 or later.
 
 Package: libavfilter-extra
+Build-Profiles: <!pkg.ffmpeg.noextra>
 Architecture: any
 Section: metapackages
 Multi-Arch: same
@@ -501,6 +505,7 @@ Description: FFmpeg library with (de)muxers for multimedia containers - runtime 
  This package contains the runtime files.
 
 Package: libavformat-extra60
+Build-Profiles: <!pkg.ffmpeg.noextra>
 Architecture: any
 Section: libs
 Multi-Arch: same
@@ -530,6 +535,7 @@ Description: FFmpeg library with additional (de)muxers for multimedia containers
  under the GPL version 3 or later.
 
 Package: libavformat-extra
+Build-Profiles: <!pkg.ffmpeg.noextra>
 Architecture: any
 Section: metapackages
 Multi-Arch: same
