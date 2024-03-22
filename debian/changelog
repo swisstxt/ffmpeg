@@ -1,3 +1,13 @@
+ffmpeg (7:6.1.1-3) unstable; urgency=medium
+
+  * debian/:
+    - Add build profile pkg.ffmpeg.noextra to disable the build of the -extra
+      packages.
+    - Disable OpenMAX support
+    - Skip more dependencies in pkg.ffmpeg.stage1 build profile
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 22 Mar 2024 07:30:38 +0100
+
 ffmpeg (7:6.1.1-2) unstable; urgency=medium
 
   * debian/patches: Fix compilation with glslang 14 (Closes: #1064740)
