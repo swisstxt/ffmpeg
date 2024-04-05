@@ -55,9 +55,13 @@ Build-Depends:
  libcodec2-dev,
 # --enable-libdav1d
  libdav1d-dev,
+# --enable-libdvdnav
+ libdvdnav-dev <!pkg.ffmpeg.stage1>,
+# --enable-libdvdread
+ libdvdread-dev <!pkg.ffmpeg.stage1>,
 # --enable-libdc1394
  libdc1394-dev [linux-any],
-# --enable-libdrm
+# autodetected
  libdrm-dev [linux-any],
 # autodected: ffnvcodec
  libffmpeg-nvenc-dev [amd64 arm64 i386],

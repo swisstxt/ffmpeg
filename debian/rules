@@ -126,7 +126,7 @@ endif
 # - frei0r, which build-depends on opencv.
 # - rav1e and rsvg2 for bootstrap to avoid a complete rust toolchain.
 # - network protocols srt, ssh, zmq, rabbitmq, rist, ...
-# - device access bluray, jack, ...
+# - device access bluray, jack, dvd, ...
 # - optional features pocketsphix, zvbi, ladsap, lv2, sdl2, ...
 ifneq (,$(filter pkg.ffmpeg.stage1,$(DEB_BUILD_PROFILES)))
 	CONFIG += \
@@ -134,6 +134,8 @@ ifneq (,$(filter pkg.ffmpeg.stage1,$(DEB_BUILD_PROFILES)))
 		--disable-frei0r \
 		--disable-ladspa \
 		--disable-libbluray \
+		--disable-libdvdnav \
+		--disable-libdvdread \
 		--disable-libjack \
 		--disable-libjxl \
 		--disable-libplacebo \
@@ -157,6 +159,8 @@ else
 		--enable-frei0r \
 		--enable-ladspa \
 		--enable-libbluray \
+		--enable-libdvdnav \
+		--enable-libdvdread \
 		--enable-libjack \
 		--enable-libpulse \
 		--enable-librabbitmq \
