@@ -1,0 +1,38 @@
+From: Andreas Rheinhardt <andreas.rheinhardt@outlook.com>
+Date: Sun, 24 Mar 2024 16:10:16 +0100
+Subject: avcodec/wavpack: Fix leak and segfault on reallocation error
+
+av_realloc_f() frees the buffer it is given on allocation
+failure. But in this case, the buffer is an array of
+ownership pointers, causing leaks on error. Furthermore,
+the count of pointers is unchanged on error and the codec's
+close function uses it to free said ownership pointers,
+causing a NPD.
+This is a regression since 46412a8935e4632b2460988bfce4152c7dccce22.
+
+Fix this by switching to av_realloc_array().
+
+Signed-off-by: Andreas Rheinhardt <andreas.rheinhardt@outlook.com>
+(cherry picked from commit 2f59648aed8ba538e2ff3cd7edcb85f4501faa25)
+---
+ libavcodec/wavpack.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/libavcodec/wavpack.c b/libavcodec/wavpack.c
+index 09b8731..a81049b 100644
+--- a/libavcodec/wavpack.c
++++ b/libavcodec/wavpack.c
+@@ -973,9 +973,11 @@ static inline int wv_unpack_mono(WavpackFrameContext *s, GetBitContext *gb,
+ 
+ static av_cold int wv_alloc_frame_context(WavpackContext *c)
+ {
+-    c->fdec = av_realloc_f(c->fdec, c->fdec_num + 1, sizeof(*c->fdec));
+-    if (!c->fdec)
++    WavpackFrameContext **fdec = av_realloc_array(c->fdec, c->fdec_num + 1, sizeof(*c->fdec));
++
++    if (!fdec)
+         return -1;
++    c->fdec = fdec;
+ 
+     c->fdec[c->fdec_num] = av_mallocz(sizeof(**c->fdec));
+     if (!c->fdec[c->fdec_num])
