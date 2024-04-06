@@ -31,6 +31,7 @@ CONFIG := --prefix=/usr \
 	--arch=$(DEB_HOST_ARCH_CPU) \
 	--enable-gpl \
 	--disable-stripping \
+	--disable-libmfx \
 	--disable-omx \
 	--enable-gnutls \
 	--enable-libaom \
@@ -76,8 +77,9 @@ CONFIG := --prefix=/usr \
 CONFIG += --disable-sndio
 
 ifeq (amd64,$(DEB_HOST_ARCH))
-	CONFIG += --enable-libvpl \
-		--disable-libmfx
+	CONFIG += --enable-libvpl
+else
+	CONFIG += --disable-libvpl
 endif
 
 # The standard configuration only uses the shared CONFIG.
