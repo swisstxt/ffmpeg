@@ -207,18 +207,12 @@ else
 endif
 endif
 
-# Disable altivec optimizations on powerpc, because they are not always available on this architecture.
-ifeq (powerpc,$(DEB_HOST_ARCH))
-	CONFIG += --disable-altivec
-	# Build an altivec flavor of the libraries on powerpc.
-	# This works around the problem that runtime cpu detection on powerpc currently does not work,
-	# because, if altivec is enabled, all files are build with '-maltivec' so that the compiler inserts altivec instructions, wherever it likes.
-	CONFIG_altivec = --enable-shared \
-		--enable-altivec \
-		--disable-doc \
-		--disable-programs
-	CONFIG_altivec-extra = $(CONFIG_altivec) $(CONFIG_extra)
-	FLAVORS += altivec altivec-extra
+# Disable ASM-based optimizations on powerpc and ppc64el.
+# They are currently not maintained and broken:
+# * https://trac.ffmpeg.org/ticket/9604
+# * https://trac.ffmpeg.org/ticket/10955
+ifneq (,$(filter powerpc ppc64el,$(DEB_HOST_ARCH)))
+	CONFIG += --disable-asm
 endif
 
 # Disable assembly optimizations on x32, because they don't work (yet).
@@ -320,16 +314,8 @@ override_dh_auto_test-indep:
 
 override_dh_auto_install-arch:
 	dh_auto_install -a --sourcedirectory=debian/standard
-ifeq (powerpc,$(DEB_HOST_ARCH))
-	install -d debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
-	install -m 644 debian/altivec/*/*.so.* debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
-endif
 ifeq ($(filter pkg.ffmpeg.noextra,$(DEB_BUILD_PROFILES)),)
 	dh_auto_install -a --sourcedirectory=debian/extra --destdir=debian/tmp/extra
-endif
-ifeq (powerpc,$(DEB_HOST_ARCH))
-	install -d debian/tmp/extra/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
-	install -m 644 debian/altivec-extra/*/*.so.* debian/tmp/extra/usr/lib/$(DEB_HOST_MULTIARCH)/altivec
 endif
 
 override_dh_auto_install-indep:
