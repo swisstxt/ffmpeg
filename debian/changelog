@@ -2,7 +2,7 @@ ffmpeg (7:7.0-1) experimental; urgency=medium
 
   * New upstream version 7.0
   * SONAME bumps:
-     - libavcodec60 -> libavcodec61
+    - libavcodec60 -> libavcodec61
     - libavdevice60 -> libavdevice61
     - libavfilter9 -> libavfilter10
     - libavformat60 -> libavformat61
