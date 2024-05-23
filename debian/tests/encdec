@@ -160,7 +160,7 @@ list_formats() {
     # Get the raw list
     lines=$(ffmpeg -hide_banner -formats | grep "^ $match")
     for line in $lines; do
-        item=$(echo "$line" | sed "s/^ [D ][E ] \([^ ]*\) .*/\1/")
+        item=$(echo "$line" | sed "s/^ [D ][E ][d ] \([^ ]*\) .*/\1/")
         item=${item%%,*}
         echo "$item"
     done
