@@ -1,4 +1,0 @@
-0001-avcodec-ppc-h264dsp-Fix-left-shifts-of-negative-numb.patch
-0002-avcodec-lossless_videoencdsp-Don-t-presume-alignment.patch
-0003-avcodec-wavpack-Fix-leak-and-segfault-on-reallocatio.patch
-0004-fate-ffmpeg-Avoid-dependency-on-samples.patch
