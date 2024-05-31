@@ -1,3 +1,16 @@
+ffmpeg (7:7.0.1-1) experimental; urgency=medium
+
+  [ Sebastian Ramacher ]
+  * New upstream version 7.0.1
+  * debian/: Disable ASM-based optimizations on powerpc and ppc64el
+  * debian/tests: Drop one test for nut
+
+  [ Diederik de Haas ]
+  * d/tests: Update list_formats for extra output column in ffmpeg 7.0
+    (Closes: #1071666)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 31 May 2024 19:31:33 +0200
+
 ffmpeg (7:7.0-1) experimental; urgency=medium
 
   * New upstream version 7.0
