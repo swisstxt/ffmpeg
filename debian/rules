@@ -215,6 +215,13 @@ ifneq (,$(filter powerpc ppc64el,$(DEB_HOST_ARCH)))
 	CONFIG += --disable-asm
 endif
 
+# Disable ASM-based optimizations on armel and armhf.
+# They current do not build:
+# * https://trac.ffmpeg.org/ticket/11074
+ifneq (,$(filter armel armhf,$(DEB_HOST_ARCH)))
+	CONFIG += --disable-asm
+endif
+
 # Disable assembly optimizations on x32, because they don't work (yet).
 ifneq (,$(filter x32,$(DEB_HOST_ARCH)))
 	CONFIG += --disable-asm
