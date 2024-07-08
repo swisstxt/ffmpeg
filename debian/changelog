@@ -1,3 +1,9 @@
+ffmpeg (7:6.1.1-5) unstable; urgency=medium
+
+  * debian/rules: Temporarily disable ASM optimizations on armel and armhf
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Tue, 09 Jul 2024 00:22:10 +0200
+
 ffmpeg (7:6.1.1-4) unstable; urgency=medium
 
   * debian/patches: Fix build with more recent mesa (Closes: #1069349)
