@@ -46,7 +46,7 @@ Build-Depends:
 # autodetected: external library 'bzlib'
  libbz2-dev,
 # --enable-libcaca
- libcaca-dev,
+ libcaca-dev <!pkg.ffmpeg.stage1>,
 # --enable-libcdio
  libcdio-paranoia-dev,
 # --enable-libchromaprint
