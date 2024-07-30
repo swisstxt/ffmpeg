@@ -18,11 +18,6 @@ ifeq ($(DEB_HOST_ARCH_BITS),32)
 # https://trac.ffmpeg.org/ticket/11115
 export DEB_CFLAGS_MAINT_APPEND=-Wno-error=incompatible-pointer-types -Wno-error=int-conversion
 endif
-ifeq ($(DEB_HOST_ARCH_ENDIAN),big)
-# temporary workaround for gcc-14 changes
-# https://trac.ffmpeg.org/ticket/11119
-export DEB_CFLAGS_MAINT_APPEND=-Wno-error=incompatible-pointer-types -Wno-error=int-conversion
-endif
 
 # Package name for the extra flavor.
 SHLIB_PKGS := $(shell sed -nr '/extra/! s/^Package:[[:space:]]*(lib.*[0-9]+)[[:space:]]*$$/\1/p' debian/control)
