@@ -1,2 +1,3 @@
 0001-avcodec-pcm-bluray-dvd-Use-correct-pointer-types-on-.patch
 0002-fftools-ffplay_renderer-use-correct-NULL-value-for-V.patch
+0003-avutil-hwcontext_vaapi-use-the-correct-type-for-VASu.patch
