@@ -1,3 +1,14 @@
+ffmpeg (7:7.0.2-1) unstable; urgency=medium
+
+  * New upstream version 7.0.2
+    - Fix FTBFS on big-endian architectures with gcc 14 (Closes: #1077551)
+    - Fix FTBFS on 32 bit architectures with gcc 14
+  * debian/rules:
+    - Revert "Workaround gcc 14 warnings on big-endian architectures"
+    - Revert "Workaround gcc 14 warnings on 32 bit architectures"
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Sun, 04 Aug 2024 00:26:53 +0200
+
 ffmpeg (7:7.0.1-5) unstable; urgency=medium
 
   * debian/rules: Workaround gcc 14 warnings on big-endian architectures
