@@ -1,3 +1,10 @@
+ffmpeg (7:7.0.2-2) unstable; urgency=medium
+
+  * debian/patches: Apply patches to avoid VA-API failures with modern Mesa3D
+    (Closes: #1072038)
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Mon, 05 Aug 2024 23:03:13 +0200
+
 ffmpeg (7:7.0.2-1) unstable; urgency=medium
 
   * New upstream version 7.0.2
