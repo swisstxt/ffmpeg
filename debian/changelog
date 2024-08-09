@@ -1,3 +1,10 @@
+ffmpeg (7:5.1.6-0+deb12u1) bookworm-security; urgency=medium
+
+  * New upstream version 5.1.6
+    - Fixes CVE-2024-7055, CVE-2024-7272
+
+ -- Sebastian Ramacher <sramacher@debian.org>  Fri, 09 Aug 2024 23:15:07 +0200
+
 ffmpeg (7:5.1.5-0+deb12u1) bookworm-security; urgency=medium
 
   * New upstream version 5.1.5
