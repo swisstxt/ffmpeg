@@ -70,7 +70,9 @@ CONFIG := --prefix=/usr \
 	--enable-libzimg \
 	--enable-openal \
 	--enable-opencl \
-	--enable-opengl
+	--enable-opengl \
+	--enable-libfdk-aac \
+	--enable-nonfree
 
 # disable sndio, it's pulled in via libopenal-dev and autodetected
 CONFIG += --disable-sndio

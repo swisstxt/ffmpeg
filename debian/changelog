@@ -1,3 +1,10 @@
+ffmpeg (7:7.0.2-3ubuntu-swisstxt-fdk) UNRELEASED; urgency=medium
+
+  * debian/rules: enable libfdk-aac
+  * debian/control: add build dependency to libfdk-aac-dev
+
+ -- Matthias Löffel <matthias.loeffel@gmail.com>  Sat, 07 Sep 2024 10:43:35 +0200
+
 ffmpeg (7:7.0.2-3) unstable; urgency=medium
 
   * debian/patches: Apply upstream patch to fix armel/armhf asm builds

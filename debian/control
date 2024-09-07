@@ -196,6 +196,8 @@ Build-Depends:
  libzvbi-dev <!pkg.ffmpeg.stage1>,
 # --enable-opencl
  ocl-icd-opencl-dev | opencl-dev,
+# --enable-libfdk-aac
+ libfdk-aac-dev,
 # used to detect libraries
  pkgconf,
 # HTML documentation
